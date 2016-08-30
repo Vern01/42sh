@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_loop.c                                          :+:      :+:    :+:   */
+/*   ft_unsetenv.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/28 12:25:06 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/30 09:27:34 by oexall           ###   ########.fr       */
+/*   Created: 2016/08/30 09:11:13 by oexall            #+#    #+#             */
+/*   Updated: 2016/08/30 09:27:04 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <42sh.h>
 
-int		ft_loop(t_env *env)
+int	ft_unsetenv(t_env *env, char *name)
 {
-	int	re;
+	int	i;
 
-	(void)env; //just for debugging purposes.
-	re = 1;
-	while (re)
+	i = 0;
+	if (!name)
+		return (ft_error(1, "unsetenv", "Needs an Arguement"));
+	while (env->environ[i])
 	{
-		ft_putstr(ft_getenv("USER", env));
-		ft_putstr("$>");
-		read(1, NULL, 1); //Just for debugging.
-		ft_putchar('\n'); //Just for debugging.
+		if (ft_strncmp(env->environ[i], name, ft_strlen(name)) == 0)
+		{
+			free(env->environ[i]);
+			while (env->environ[i + 1])
+			{
+				env->environ[i] = env->environ[i + 1];
+				env->environ[i + 1] = NULL;
+				i++;
+			}
+		}
+		i++;
 	}
 	return (1);
 }

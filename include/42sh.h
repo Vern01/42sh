@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/28 11:38:21 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/30 08:53:12 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/30 09:18:17 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ char				*ft_getenv(char *name, t_env *env);
 char				**ft_dupenviron(char **environ, int size);
 int					ft_setenv(t_env *env, char *name, char *value, int reset);
 int					ft_update_env(t_env *env, char *name, char *value);
+int					ft_unsetenv(t_env *env, char *name);
 
 /*
 ** Initialization of termcaps and associated commands

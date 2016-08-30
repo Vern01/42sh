@@ -6,7 +6,7 @@
 #    By: oexall <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/28 12:11:33 by oexall            #+#    #+#              #
-#    Updated: 2016/08/30 08:53:30 by oexall           ###   ########.fr        #
+#    Updated: 2016/08/30 09:18:42 by oexall           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ all: $(NAME)
 SRC_PATH= srcs/
 SRC1= main.c ft_loop.c ft_errors.c \
 	  ft_read_environ.c ft_getenv.c ft_setenv.c ft_update_env.c \
-	  ft_dupenviron.c \
+	  ft_dupenviron.c ft_unsetenv.c \
 	  ft_termcap.c
 
 SRCS= $(addprefix $(SRC_PATH), $(SRC1))
