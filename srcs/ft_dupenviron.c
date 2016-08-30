@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_loop.c                                          :+:      :+:    :+:   */
+/*   ft_dupenviron.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/28 12:25:06 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/30 09:00:14 by oexall           ###   ########.fr       */
+/*   Created: 2016/08/30 08:48:47 by oexall            #+#    #+#             */
+/*   Updated: 2016/08/30 08:54:17 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <42sh.h>
 
-int		ft_loop(t_env *env)
+char	**ft_dupenviron(char **environ, int size)
 {
-	int	re;
+	int		i;
+	char	**tmp;
 
-	(void)env; //just for debugging purposes.
-	re = 1;
-	while (re)
-	{
-		ft_putstr(ft_getenv("USER", env));
-		ft_putstr("$>");
-		read(1, NULL, 1); //Just for debugging.
-		ft_putchar('\n'); //Just for debugging.
-
-		//DEBUG
-		ft_setenv(env, "NAME", "test", 0);
-		ft_print_env(env);
-		ft_setenv(env, "NAME", "owen", 1);
-		ft_print_env(env);
-	}
-	return (1);
+	tmp = (char **)malloc(sizeof(char *) * (size + 1));
+	i = -1;
+	while (environ[++i] && i < size)
+		tmp[i] = ft_strdup(environ[i]);
+	while (++i < size)
+		tmp[i][0] = '\0';
+	tmp[size] = NULL;
+	return (tmp);
 }

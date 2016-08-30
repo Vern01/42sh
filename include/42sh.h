@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/28 11:38:21 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/30 08:01:10 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/30 08:53:12 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef struct		s_env
 ** Other common functions
 */
 int					ft_error(int ret, char *cmd, char *err);
+int					ft_cargs(char **tab);
+char				*ft_chrjoin(char *str1, char *str2, char c);
 
 /*
 **Main functions
@@ -46,7 +48,9 @@ void				ft_read_environ(t_env *env, char **environ);
 void				ft_free_environ(char **environ);
 void				ft_print_env(t_env *env);
 char				*ft_getenv(char *name, t_env *env);
+char				**ft_dupenviron(char **environ, int size);
 int					ft_setenv(t_env *env, char *name, char *value, int reset);
+int					ft_update_env(t_env *env, char *name, char *value);
 
 /*
 ** Initialization of termcaps and associated commands

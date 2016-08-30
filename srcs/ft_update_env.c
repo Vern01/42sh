@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_loop.c                                          :+:      :+:    :+:   */
+/*   ft_update_env.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/28 12:25:06 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/30 09:00:14 by oexall           ###   ########.fr       */
+/*   Created: 2016/08/30 08:17:56 by oexall            #+#    #+#             */
+/*   Updated: 2016/08/30 08:31:12 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <42sh.h>
 
-int		ft_loop(t_env *env)
+int	ft_update_env(t_env *env, char *name, char *value)
 {
-	int	re;
+	int	i;
 
-	(void)env; //just for debugging purposes.
-	re = 1;
-	while (re)
-	{
-		ft_putstr(ft_getenv("USER", env));
-		ft_putstr("$>");
-		read(1, NULL, 1); //Just for debugging.
-		ft_putchar('\n'); //Just for debugging.
-
-		//DEBUG
-		ft_setenv(env, "NAME", "test", 0);
-		ft_print_env(env);
-		ft_setenv(env, "NAME", "owen", 1);
-		ft_print_env(env);
-	}
+	if (!name || !value)
+		return (ft_error(1, "update_env", "Invalid Args"));
+	i = -1;
+	while (env->environ[++i])
+		if (ft_strncmp(env->environ[i], name, ft_strlen(name)) == 0)
+		{
+			free(env->environ[i]);
+			env->environ[i] = ft_chrjoin(name, value, '=');
+			break ;
+		}
 	return (1);
 }
