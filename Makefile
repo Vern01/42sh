@@ -6,7 +6,7 @@
 #    By: oexall <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/08/28 12:11:33 by oexall            #+#    #+#              #
-#    Updated: 2016/08/30 08:10:20 by oexall           ###   ########.fr        #
+#    Updated: 2016/08/30 08:12:45 by oexall           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ HEADER= -I include/ -I libft
 all: $(NAME)
 
 SRC_PATH= srcs/
-SRC1= main.c ft_loop.c \
+SRC1= main.c ft_loop.c ft_errors.c \
 	  ft_read_environ.c ft_getenv.c ft_setenv.c \
 	  ft_termcap.c
 
