@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/28 12:25:06 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/30 09:27:34 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/30 09:28:06 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int		ft_loop(t_env *env)
 {
 	int	re;
 
-	(void)env; //just for debugging purposes.
 	re = 1;
 	while (re)
 	{

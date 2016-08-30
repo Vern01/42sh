@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/28 11:38:21 by oexall            #+#    #+#             */
-/*   Updated: 2016/08/30 09:18:17 by oexall           ###   ########.fr       */
+/*   Updated: 2016/08/30 10:33:00 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,27 @@
 # include <termcap.h>
 # include <termios.h>
 
+typedef struct		s_line
+{
+	int				i;
+	size_t			cursor;
+	char			c;
+	char			*line;
+	char			*entered;
+	struct s_line	*next;
+	struct s_line	*prev;
+}					t_line;
+
 typedef struct		s_win
 {
+	struct termios	oterm;
 	struct termios	term;
 }					t_win;
 
 typedef struct		s_env
 {
 	char			**environ;
+	t_line			*line;
 	t_win			win;
 }					t_env;
 
