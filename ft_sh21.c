@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/21 11:50:00 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/31 10:15:04 by oexall           ###   ########.fr       */
+/*   Updated: 2016/09/06 09:13:52 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ int			main(int ac, char **av)
 
 	ft_init_win(&data.win);
 	data.env = ft_cpyenv(environ);
+	data.local = NULL;
 	oflag = ft_oflag(ac, av);
 	data.line = ft_line_def();
 	while (1)

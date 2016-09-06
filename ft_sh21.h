@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 08:48:05 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/31 11:09:50 by oexall           ###   ########.fr       */
+/*   Updated: 2016/09/06 09:11:56 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct	s_data
 	t_win	win;
 	t_line	*line;
 	char	**env;
+	char	**local;
 }				t_data;
 
 void			ft_add_char(t_line *l);
