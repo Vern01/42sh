@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/23 15:42:59 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/06 08:54:40 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/06 10:18:46 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,12 @@ static char	*ft_get_qut(char *line)
 	temp = NULL;
 	l = ft_line_def();
 	ft_putstr("quote>");
-	while (ft_get_next_line(0, &l) > 0)
-	{
-		ft_lines_entered(&l);
+	ft_get_next_line(0, &l);
+	
+//		ft_lines_entered(&l);
 		temp = ft_strjoin(line, l->line);
-		ft_line_add(&l);
-	}
+//		ft_line_add(&l);
+
 	if (line)
 		free(line);
 	return (temp);
