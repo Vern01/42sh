@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/23 15:42:59 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/05 13:17:42 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/06 08:45:00 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	*ft_get_qut(char *line)
 	temp = NULL;
 	line2 = NULL;
 	ft_putstr("quote>");
-	if (get_next_line(0, &line2) > 0)
+	if (ft_get_next_line(0, &line2) > 0)
 	{
 		temp = ft_strjoin(line, line2);
 	}
@@ -34,21 +34,27 @@ static char	*ft_get_qut(char *line)
 char		*ft_check_qut(char *line)
 {
 	int		i;
-	int		qut;
+	int		d_qut;
+	int		s_qut;
 	char	*re;
 
-	qut = 0;
+	d_qut = 0;
+	s_qut = 0;
 	i = 0;
 	re = line;
 	while (line[i])
 	{
 		if (i == 0 && line[i] == '"')
-			qut = 1;
+			d_qut = 1;
 		if (i > 0 && line[i] == '"' && line[i - 1] != '\\')
-			qut = (qut == 0) ? 1 : 0;
+			d_qut = (d_qut == 0) ? 1 : 0;
+		if (i == 0 && line[i] == '\'')
+			s_qut = 1;
+		if (i > 0 && line[i] == '\'' && line[i - 1] != '\\')
+			s_qut = (s_qut == 0) ? 1 : 0;
 		i++;
 	}
-	if (qut)
+	if (d_qut || s_qut)
 	{
 		re = ft_get_qut(line);
 		re = ft_check_qut(re);
