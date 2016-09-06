@@ -6,7 +6,7 @@
 #    By: rojones <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/28 08:54:36 by rojones           #+#    #+#              #
-#    Updated: 2016/08/06 18:00:01 by rojones          ###   ########.fr        #
+#    Updated: 2016/09/06 10:24:14 by sasiedu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,16 +29,23 @@ OBJ = ft_add_char.o ft_arglen.o ft_arrow_down.o ft_arrow_left.o ft_arrow_right.o
 	  ft_split_line_op.o ft_split_redir.o ft_search_path.o \
 	  ft_setenv.o ft_skip_spaces.o ft_split_input.o ft_str_qut_char.o \
 	  ft_trunc_args.o ft_unsetenv.o ft_update_env_pwd.o
+
+OBJ2 = shell/history.o shell/keys.o shell/keys_arrow.o shell/keys_ctrl.o \
+	   shell/keys_extra.o shell/keys_line.o shell/line_utils.o \
+	   shell/new_main.o shell/quotes.o shell/tools.o shell/shell_main.o
+
 MAKELIB = make -C libft
 MAKELIBCLEAN = make -C libft clean
 
 $(NAME) : $(OBJ)
 	$(MAKELIB)
-	$(CCFLAGS) -lcurses -Llibft -lft -o $(NAME) ft_sh21.c $(OBJ)
+	@make -C shell/
+	$(CCFLAGS) -lcurses -Llibft -lft -o $(NAME) ft_sh21.c $(OBJ) $(OBJ2)
 
 all : $(NAME)
 
 clean :
+	@make -C shell/ clean
 	/bin/rm -f $(OBJ)
 
 fclean : clean

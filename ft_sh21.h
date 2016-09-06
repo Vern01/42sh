@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 08:48:05 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/31 11:09:50 by oexall           ###   ########.fr       */
+/*   Updated: 2016/09/06 09:40:07 by sasiedu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <termios.h>
 # include <curses.h>
 # include <term.h>
+# include "shell/shell.h"
 
 
 typedef struct	s_win
