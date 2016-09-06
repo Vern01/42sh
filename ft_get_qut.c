@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/23 15:42:59 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/06 08:45:00 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/06 08:54:40 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 static char	*ft_get_qut(char *line)
 {
-	char	*line2;
+	t_line	*l;
 	char	*temp;
 
 	temp = NULL;
-	line2 = NULL;
+	l = ft_line_def();
 	ft_putstr("quote>");
-	if (ft_get_next_line(0, &line2) > 0)
+	while (ft_get_next_line(0, &l) > 0)
 	{
-		temp = ft_strjoin(line, line2);
+		ft_lines_entered(&l);
+		temp = ft_strjoin(line, l->line);
+		ft_line_add(&l);
 	}
 	if (line)
 		free(line);
-	if (line2)
-		free(line2);
 	return (temp);
 }
 
@@ -46,11 +46,11 @@ char		*ft_check_qut(char *line)
 	{
 		if (i == 0 && line[i] == '"')
 			d_qut = 1;
-		if (i > 0 && line[i] == '"' && line[i - 1] != '\\')
+		if (i > 0 && line[i] == '"' && line[i - 1] != '\\' && s_qut == 0)
 			d_qut = (d_qut == 0) ? 1 : 0;
 		if (i == 0 && line[i] == '\'')
 			s_qut = 1;
-		if (i > 0 && line[i] == '\'' && line[i - 1] != '\\')
+		if (i > 0 && line[i] == '\'' && line[i - 1] != '\\' && d_qut == 0)
 			s_qut = (s_qut == 0) ? 1 : 0;
 		i++;
 	}
