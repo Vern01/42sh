@@ -6,7 +6,7 @@
 /*   By: sasiedu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/07 00:44:15 by sasiedu           #+#    #+#             */
-/*   Updated: 2016/09/06 12:52:13 by sasiedu          ###   ########.fr       */
+/*   Updated: 2016/09/06 13:19:50 by sasiedu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_down_key(t_term **sh)
 
 	line = ft_history_tower("DOWN", NULL);
 	ft_memset((*sh)->line, 0, MAX_LEN);
-	if (line == NULL && (*sh)->current == NULL)
+	if (line == NULL)
 		return ;
 	if (line == NULL)
 	{
@@ -45,7 +45,7 @@ void	ft_down_key(t_term **sh)
 	}
 	else
 		ft_strcpy((*sh)->line, line);
-	(*sh)->len = ft_strlen((*sh)->line);
+	(*sh)->len = ft_strlen(line);
 	(*sh)->my_cur = (*sh)->len;
 //	puts("herh");
 //	usleep(400000);
