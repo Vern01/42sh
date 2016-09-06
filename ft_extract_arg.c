@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/01 16:31:28 by rojones           #+#    #+#             */
-/*   Updated: 2016/07/23 17:45:29 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/06 10:30:51 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,20 @@ static char	*ft_malloc(int len)
 char		*ft_extract_arg(int len, int start, int *end, char *line)
 {
 	int		i;
-	int		qut;
+	int		s_qut;
+	int		d_qut;
 	int		oldst;
 	char	*re;
 
 	i = 0;
-	qut = 0;
+	s_qut = 0;
+	d_qut = 0;
 	if (!(re = ft_malloc(len)))
 		return (NULL);
 	while (i < len && start < *end)
 	{
 		oldst = start;
-		ft_check_arg_case_len(line, &qut, &start);
+		ft_check_arg_case_len(line, &s_qut, &d_qut, &start);
 		if (start == oldst)
 		{
 			re[i] = line[start];
