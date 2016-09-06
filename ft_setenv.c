@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 13:46:36 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/31 11:09:14 by oexall           ###   ########.fr       */
+/*   Updated: 2016/09/06 13:58:06 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char		**ft_add_env_var(char **split, char **env)
 	return (re);
 }
 
-static char	**ft_dupenv(char **env, int size)
+char	**ft_dupenv(char **env, int size)
 {
 	int		i;
 	char	**tmp;
@@ -91,5 +91,6 @@ char		**ft_setenv(char **split, t_data *data)
 		ft_free_str_arr(&data->env);
 		data->env = tmp;
 	}
+	free(name);
 	return (tmp);
 }

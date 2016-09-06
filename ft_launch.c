@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/01 13:36:10 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/31 11:13:38 by oexall           ###   ########.fr       */
+/*   Updated: 2016/09/06 13:55:45 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,14 @@ static void	ft_perent(t_launch *lau, t_data *data)
 		ft_exit(lau->args, data);
 	else if (strcmp(lau->args[0], "cd") == 0)
 		ft_cd(lau->args, data);
-	else if (strcmp(lau->args[0], "setenv") == 0)
+	else if (strcmp(lau->args[0], "setenv") == 0 ||
+			strcmp(lau->args[0], "export") == 0)
 		data->env = ft_setenv(lau->args, data);
-	else if (strcmp(lau->args[0], "unsetenv") == 0)
+	else if (strcmp(lau->args[0], "unsetenv") == 0 ||
+			strcmp(lau->args[0], "unset") == 0)
 		data->env = ft_unsetenv(lau->args, data);
+	else if (ft_is_local(lau->args[0]))
+		ft_local_export(lau->args[0], data);
 	close(lau->p[1]);
 	lau->fd_in = lau->p[0];
 	if (lau->args)
