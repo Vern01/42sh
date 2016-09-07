@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 13:46:36 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/31 11:09:14 by oexall           ###   ########.fr       */
+/*   Updated: 2016/09/07 15:34:43 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char		**ft_add_env_var(char **split, char **env)
 	return (re);
 }
 
-static char	**ft_dupenv(char **env, int size)
+char	**ft_dupenv(char **env, int size)
 {
 	int		i;
 	char	**tmp;
@@ -68,20 +68,20 @@ static char	**ft_dupenv(char **env, int size)
 	return (tmp);
 }
 
-char		**ft_setenv(char **split, t_data *data)
+int	ft_setenv(char **split, t_data *data)
 {
 	int		c;
 	char	**tmp;
 	char	*name;
 
-	if (!split[0] || !split[1])
+	if (!split[0] || !split[1] || !ft_strchr(split[1], '='))
 	{
 		ft_printf("setenv: Needs and arguement.\n");
-		return (NULL);
+		return (EXIT_FAILURE);
 	}
 	tmp = NULL;
 	name = ft_strsub(split[1], 0, ft_strchr(split[1], '=') - split[1]);
-	if (ft_check_env_var(name, data->env) < 0)
+	if (ft_check_env_var(name, data->env) == -1)
 	{
 		c = 0;
 		while (data->env[c])
@@ -91,5 +91,6 @@ char		**ft_setenv(char **split, t_data *data)
 		ft_free_str_arr(&data->env);
 		data->env = tmp;
 	}
-	return (tmp);
+	ft_strdel(&name);
+	return (EXIT_SUCCESS);
 }

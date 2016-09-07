@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/06 17:55:11 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/31 10:05:21 by oexall           ###   ########.fr       */
+/*   Updated: 2016/09/07 15:22:33 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	**ft_loop_redir_out(t_launch *lau, t_data *data, char **env, int i)
 		else if (pid == 0)
 		{
 			ft_redir_out(lau->out[i], 1);
-			env = ft_get_comm(lau->args, data);
+			ft_get_comm(lau->args, data, lau->pipe);
 			exit(0);
 		}
 		else
