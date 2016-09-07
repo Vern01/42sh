@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 16:49:16 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/31 13:03:24 by oexall           ###   ########.fr       */
+/*   Updated: 2016/09/07 14:41:23 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,14 @@ char	**ft_rm_env_var(char **env, int rm_ind)
 	return (re);
 }
 
-char	**ft_unsetenv(char **split, t_data *data)
+int	ft_unsetenv(char **split, t_data *data)
 {
 	int		rm;
 
 	if (split[1] == NULL)
 	{
 		ft_putstr("no args passed");
-		return (data->env);
+		return (EXIT_FAILURE);
 	}
 	rm = 0;
 	while (data->env[rm])
@@ -66,5 +66,5 @@ char	**ft_unsetenv(char **split, t_data *data)
 		}
 		rm++;
 	}
-	return (data->env);
+	return (EXIT_SUCCESS);
 }

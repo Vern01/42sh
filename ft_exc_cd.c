@@ -6,13 +6,13 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 15:16:14 by rojones           #+#    #+#             */
-/*   Updated: 2016/07/20 17:45:54 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/07 13:35:05 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh21.h"
 
-void	ft_exc_cd(char *path, char **env)
+int	ft_exc_cd(char *path, char **env)
 {
 	char	*oldpwd;
 	char	*pwd;
@@ -21,21 +21,20 @@ void	ft_exc_cd(char *path, char **env)
 
 	val = getcwd(NULL, 0);
 	oldpwd = ft_pwd_var("OLDPWD", val);
-	if (val)
-		free(val);
+	ft_strdel(&val);
 	if (chdir(path) != 0)
 	{
 		ft_putstr("cd: chdir failed\n");
-		return ;
+		return (EXIT_FAILURE);
 	}
 	val = getcwd(NULL, 0);
 	pwd = ft_pwd_var("PWD", val);
-	if (val)
-		free(val);
+	ft_strdel(&val);
 	varloc = ft_check_env_var("OLDPWD", env);
 	if (varloc != -1)
 		ft_update_pwd_env(env, &oldpwd, varloc);
 	varloc = ft_check_env_var("PWD", env);
 	if (varloc != -1)
 		ft_update_pwd_env(env, &pwd, varloc);
+	return (EXIT_SUCCESS);
 }

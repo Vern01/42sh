@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 12:58:23 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/31 10:25:58 by oexall           ###   ########.fr       */
+/*   Updated: 2016/09/07 14:11:48 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,37 +39,44 @@ static char	*ft_sign_sub(char *in, char **env)
 	return (re);
 }
 
-static void	ft_check_dir_cd(char *path, char **env)
+static int	ft_check_dir_cd(char *path, char **env)
 {
+	int	re;
+
+	re = EXIT_FAILURE;
 	if (access(path, F_OK) == 0)
 	{
 		if (access(path, R_OK) == 0)
-			ft_exc_cd(path, env);
+			re = ft_exc_cd(path, env);
 		else
 			ft_putstr_fd("incorect permissions for file\n", 2);
 	}
 	else
 		ft_putstr_fd("fille does not exist\n", 2);
+	return (re);
 }
 
-char		**ft_cd(char **args, t_data *data)
+int		ft_cd(char **args, t_data *data)
 {
 	char	*path;
+	int		re;
 
 	path = NULL;
 	if (ft_count_arg(args) > 2)
+	{
 		ft_putstr("incorect number of arguments\n");
+		return (EXIT_FAILURE);
+	}
 	else if (args[1] == NULL || ((int)(ft_strcmp(args[1], "~")) == 0)
 			|| ((int)(ft_strcmp(args[1], "--")) == 0))
-		ft_cd_home(data);
+		re = ft_cd_home(data);
 	else if ((int)(strcmp(args[1], "-")) == 0)
-		ft_cd_opwd(data);
+		re = ft_cd_opwd(data);
 	else
 	{
 		path = ft_sign_sub(args[1], data->env);
-		ft_check_dir_cd(path, data->env);
+		re = ft_check_dir_cd(path, data->env);
 	}
-	if (path)
-		free(path);
-	return (data->env);
+	ft_strdel(&path);
+	return (re);
 }
