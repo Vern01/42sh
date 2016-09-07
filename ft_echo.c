@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 10:09:47 by rojones           #+#    #+#             */
-/*   Updated: 2016/07/20 17:43:53 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/07 07:44:01 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	ft_check_flag(char *arg, t_echo_flag *echo_flag)
 	return (1);
 }
 
-static int	ft_echo_mode(char **args, t_echo_flag echo_flag, char **env, int i)
+static int	ft_echo_mode(char **args, t_echo_flag echo_flag, t_data *dat, int i)
 {
 	int	re;
 	int	sp;
@@ -48,7 +48,7 @@ static int	ft_echo_mode(char **args, t_echo_flag echo_flag, char **env, int i)
 	re = 0;
 	sp = 1;
 	if (ft_strstr(args[i], "$"))
-		sp = ft_echo_env_var(env, args[i]);
+		sp = ft_echo_env_var(dat, args[i]);
 	else if (echo_flag.set_e == 0)
 		ft_putstr(args[i]);
 	else
@@ -58,7 +58,7 @@ static int	ft_echo_mode(char **args, t_echo_flag echo_flag, char **env, int i)
 	return (re);
 }
 
-void		ft_echo(char **args, char **env)
+void		ft_echo(char **args, t_data *data)
 {
 	t_echo_flag	echo_flag;
 	int			i;
@@ -71,7 +71,7 @@ void		ft_echo(char **args, char **env)
 		i++;
 	while (args[i] && exit == 0)
 	{
-		exit = ft_echo_mode(args, echo_flag, env, i);
+		exit = ft_echo_mode(args, echo_flag, data, i);
 		i++;
 	}
 	if (echo_flag.n == 0 && exit == 0)

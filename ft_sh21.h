@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 08:48:05 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/07 07:21:52 by oexall           ###   ########.fr       */
+/*   Updated: 2016/09/07 07:43:24 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,9 +112,9 @@ void			ft_check_redir_files(char *line);
 void			ft_clean_line(t_line *l, t_key key);
 int				ft_count_arg(char **args);
 char			**ft_cpyenv(char **env);
-void			ft_echo(char **args, char **env);
+void			ft_echo(char **args, t_data *data);
 char			ft_echo_case(char *str, int *i);
-int				ft_echo_env_var(char **env, char *arg);
+int				ft_echo_env_var(t_data *data, char *arg);
 int				ft_echo_str(char *str);
 void			ft_exc_cd(char *path, char **env);
 int				ft_exe_path(char **args, t_data *data);

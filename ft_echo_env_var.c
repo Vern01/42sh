@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/07 17:36:08 by rojones           #+#    #+#             */
-/*   Updated: 2016/07/20 17:44:55 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/07 07:48:58 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	ft_print_prepend(char *arg)
 	return (1);
 }
 
-int			ft_echo_print_env_var(char **env, char *arg)
+int			ft_echo_print_env_var(t_data *data, char *arg)
 {
 	char	*pr;
 	int		ind;
@@ -37,17 +37,24 @@ int			ft_echo_print_env_var(char **env, char *arg)
 	}
 	else
 	{
-		ind = ft_check_env_var(&arg[1], env);
+		ind = ft_check_env_var(&arg[1], data->env);
 		if (ind == -1)
-			return (0);
-		pr = ft_get_env_var(env, ind);
-		ft_putstr(pr);
-		free(pr);
+		{
+			if ((pr = ft_get_local(data, &arg[1])) == NULL)
+				return (0);
+			ft_putstr(&ft_strchr(pr, '=')[1]);
+		}
+		else
+		{
+			pr = ft_get_env_var(data->env, ind);
+			ft_putstr(pr);
+			free(pr);
+		}
 	}
 	return (1);
 }
 
-int			ft_echo_env_var(char **env, char *arg)
+int			ft_echo_env_var(t_data *data, char *arg)
 {
 	int		re;
 	char	*ptr1;
@@ -63,11 +70,11 @@ int			ft_echo_env_var(char **env, char *arg)
 		var = ft_strsub(ptr1, 0, (ptr2 - ptr1));
 		if (var)
 		{
-			re += ft_echo_print_env_var(env, var);
+			re += ft_echo_print_env_var(data, var);
 			free(var);
 		}
 		ptr1 = ptr2;
 	}
-	re += ft_echo_print_env_var(env, ptr1);
+	re += ft_echo_print_env_var(data, ptr1);
 	return (re);
 }

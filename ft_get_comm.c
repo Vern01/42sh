@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 09:41:54 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/06 14:44:46 by oexall           ###   ########.fr       */
+/*   Updated: 2016/09/07 07:44:28 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	**ft_get_comm(char **split, t_data *data)
 		if (strcmp(split[0], "exit") == 0)
 			ft_exit(split, data);
 		else if (strcmp(split[0], "echo") == 0)
-			ft_echo(split, data->env);
+			ft_echo(split, data);
 		else if (strcmp(split[0], "cd") == 0)
 			ft_cd(split, data);
 		else if (strcmp(split[0], "setenv") == 0 || strcmp(split[0], "export") == 0)
