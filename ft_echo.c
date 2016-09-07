@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 10:09:47 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/07 07:44:01 by oexall           ###   ########.fr       */
+/*   Updated: 2016/09/07 15:49:02 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	ft_echo_mode(char **args, t_echo_flag echo_flag, t_data *dat, int i)
 	return (re);
 }
 
-void		ft_echo(char **args, t_data *data)
+int		ft_echo(char **args, t_data *data)
 {
 	t_echo_flag	echo_flag;
 	int			i;
@@ -76,4 +76,5 @@ void		ft_echo(char **args, t_data *data)
 	}
 	if (echo_flag.n == 0 && exit == 0)
 		ft_putstr("\n");
+	return (EXIT_SUCCESS);
 }

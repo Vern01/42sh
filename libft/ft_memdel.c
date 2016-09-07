@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/10 16:52:07 by rojones           #+#    #+#             */
-/*   Updated: 2016/06/13 15:38:26 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/07 10:51:30 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,7 @@
 
 void	ft_memdel(void **ap)
 {
-	void	**temp;
-
-	temp = ap;
-	while (temp)
-	{
-		if (*temp)
-			free(*temp);
-		temp++;
-	}
 	if (*ap)
 		free(*ap);
+	*ap = NULL;
 }

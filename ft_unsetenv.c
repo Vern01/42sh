@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 16:49:16 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/07 15:04:35 by oexall           ###   ########.fr       */
+/*   Updated: 2016/09/07 15:54:20 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,18 @@ char	**ft_rm_env_var(char **env, int rm_ind)
 	return (re);
 }
 
-char	**ft_unsetenv_err(t_data *data)
+int	ft_unsetenv_err(void)
 {
 	ft_putstr("No args passed.\n");
-	return (data->env);
+	return (EXIT_FAILURE);
 }
 
-char	**ft_unsetenv(char **split, t_data *data)
+int	ft_unsetenv(char **split, t_data *data)
 {
 	int		rm;
 
 	if (split[1] == NULL)
-		return (ft_unsetenv_err(data));
+		return (ft_unsetenv_err());
 	if (strcmp(split[0], "unset") == 0)
 		ft_local_unset(data, split[1]);
 	rm = 0;
@@ -71,5 +71,5 @@ char	**ft_unsetenv(char **split, t_data *data)
 		}
 		rm++;
 	}
-	return (data->env);
+	return (EXIT_SUCCESS);
 }

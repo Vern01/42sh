@@ -6,51 +6,20 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/01 13:36:10 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/06 13:55:45 by oexall           ###   ########.fr       */
+/*   Updated: 2016/09/07 15:37:18 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh21.h"
 
-/*
-** char	**ft_launch(char *line, char **env)
-**  {
-**  pid_t	pid;
-**  int		status;
-**  char	**args;
-**
-**  args = ft_extract_args(line);
-**  if (args && args[0])
-**  {
-**  if (ft_strcmp(args[0], "exit") == 0)
-**  ft_exit(args, env);
-**  else if (strcmp(args[0], "cd") == 0)
-**  ft_cd(args, env);
-**  else if (strcmp(args[0], "setenv") == 0)
-**  env = ft_setenv(args, env);
-**  else if (strcmp(args[0], "unsetenv") == 0)
-**  env = ft_unsetenv(args, env);
-**  else
-**  {
-**  pid = fork();
-**  if (pid > 0)
-**  wait(&status);
-**  if (pid == 0)
-**  {
-**  env = ft_op_order(args, env);
-**  exit(0);
-**  }
-**  ft_free_str_arr(args);
-**  }
-**  }
-**  return (env);
-** }
-*/
-
 static void	ft_init(t_launch *lau, char *line)
 {
 	lau->cmd = ft_split_line_op(line);
 	lau->i = -1;
+	if (lau->cmd && lau->cmd[1] == NULL)
+		lau->pipe = 0;
+	else if (lau->cmd && lau->cmd[1] != NULL)
+		lau->pipe = 1;
 	lau->fd_in = 0;
 	lau->out = NULL;
 	lau->in = NULL;
@@ -66,19 +35,20 @@ static void	ft_close(t_launch *lau, int full)
 		ft_free_str_arr(&lau->in);
 }
 
-static void	ft_perent(t_launch *lau, t_data *data)
+static void	ft_perent(t_launch *lau, t_data *data, int	*stat)
 {
-	wait(NULL);
+	wait(stat);
+	*stat = WEXITSTATUS(*stat);
 	if (ft_strcmp(lau->args[0], "exit") == 0)
 		ft_exit(lau->args, data);
 	else if (strcmp(lau->args[0], "cd") == 0)
-		ft_cd(lau->args, data);
+		*stat = ft_cd(lau->args, data);
 	else if (strcmp(lau->args[0], "setenv") == 0 ||
 			strcmp(lau->args[0], "export") == 0)
-		data->env = ft_setenv(lau->args, data);
+		*stat = ft_setenv(lau->args, data);
 	else if (strcmp(lau->args[0], "unsetenv") == 0 ||
 			strcmp(lau->args[0], "unset") == 0)
-		data->env = ft_unsetenv(lau->args, data);
+		*stat = ft_unsetenv(lau->args, data);
 	else if (ft_is_local(lau->args[0]))
 		ft_local_export(lau->args[0], data);
 	close(lau->p[1]);
@@ -99,8 +69,10 @@ static void	ft_perent(t_launch *lau, t_data *data)
 static void	ft_chiled(char **env, t_launch *lau, t_data *data)
 {
 	int	j;
+	int	re;
 
 	j = -1;
+	re = EXIT_FAILURE;
 	dup2(lau->fd_in, 0);
 	if (lau->in)
 	{
@@ -111,20 +83,20 @@ static void	ft_chiled(char **env, t_launch *lau, t_data *data)
 	{
 		env = ft_loop_redir_out(lau, data, env, 0);
 		dup2(lau->p[1], 1);
-		env = ft_get_comm(lau->args, data);
+		re = ft_get_comm(lau->args, data, lau->pipe);
 	}
 	else
 	{
 		if (lau->out && lau->out[0])
 			env = ft_loop_redir_out(lau, data, env, 0);
 		else
-			env = ft_get_comm(lau->args, data);
+			re = ft_get_comm(lau->args, data, lau->pipe);
 	}
 	close(lau->p[0]);
 	exit(EXIT_FAILURE);
 }
 
-char		**ft_launch(char *line, t_data *data)
+char		**ft_launch(char *line, t_data *data, int *stat)
 {
 	t_launch	lau;
 
@@ -147,7 +119,7 @@ char		**ft_launch(char *line, t_data *data)
 			else if (lau.pid == 0)
 				ft_chiled(data->env, &lau, data);
 			else
-				ft_perent(&lau, data);
+				ft_perent(&lau, data, stat);
 		}
 		ft_close(&lau, 0);
 	}
