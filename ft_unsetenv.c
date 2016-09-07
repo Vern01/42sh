@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 16:49:16 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/07 14:51:56 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/07 15:54:20 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,20 @@ char	**ft_rm_env_var(char **env, int rm_ind)
 	return (re);
 }
 
+int	ft_unsetenv_err(void)
+{
+	ft_putstr("No args passed.\n");
+	return (EXIT_FAILURE);
+}
+
 int	ft_unsetenv(char **split, t_data *data)
 {
 	int		rm;
 
 	if (split[1] == NULL)
-	{
-		ft_putstr("no args passed");
-		return (EXIT_FAILURE);
-	}
+		return (ft_unsetenv_err());
+	if (strcmp(split[0], "unset") == 0)
+		ft_local_unset(data, split[1]);
 	rm = 0;
 	while (data->env[rm])
 	{

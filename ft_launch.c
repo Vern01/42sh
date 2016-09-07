@@ -6,46 +6,11 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/01 13:36:10 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/07 15:22:10 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/07 15:37:18 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh21.h"
-
-/*
-** char	**ft_launch(char *line, char **env)
-**  {
-**  pid_t	pid;
-**  int		status;
-**  char	**args;
-**
-**  args = ft_extract_args(line);
-**  if (args && args[0])
-**  {
-**  if (ft_strcmp(args[0], "exit") == 0)
-**  ft_exit(args, env);
-**  else if (strcmp(args[0], "cd") == 0)
-**  ft_cd(args, env);
-**  else if (strcmp(args[0], "setenv") == 0)
-**  env = ft_setenv(args, env);
-**  else if (strcmp(args[0], "unsetenv") == 0)
-**  env = ft_unsetenv(args, env);
-**  else
-**  {
-**  pid = fork();
-**  if (pid > 0)
-**  wait(&status);
-**  if (pid == 0)
-**  {
-**  env = ft_op_order(args, env);
-**  exit(0);
-**  }
-**  ft_free_str_arr(args);
-**  }
-**  }
-**  return (env);
-** }
-*/
 
 static void	ft_init(t_launch *lau, char *line)
 {
@@ -76,12 +41,16 @@ static void	ft_perent(t_launch *lau, t_data *data, int	*stat)
 	*stat = WEXITSTATUS(*stat);
 	if (ft_strcmp(lau->args[0], "exit") == 0)
 		ft_exit(lau->args, data);
-	else if (strcmp(lau->args[0], "cd") == 0 && lau->pipe == 0)
-		 *stat = ft_cd(lau->args, data);
-	else if (strcmp(lau->args[0], "setenv") == 0 && lau->pipe == 0)
-		 *stat = ft_setenv(lau->args, data);
-	else if (strcmp(lau->args[0], "unsetenv") == 0 && lau->pipe == 0)
+	else if (strcmp(lau->args[0], "cd") == 0)
+		*stat = ft_cd(lau->args, data);
+	else if (strcmp(lau->args[0], "setenv") == 0 ||
+			strcmp(lau->args[0], "export") == 0)
+		*stat = ft_setenv(lau->args, data);
+	else if (strcmp(lau->args[0], "unsetenv") == 0 ||
+			strcmp(lau->args[0], "unset") == 0)
 		*stat = ft_unsetenv(lau->args, data);
+	else if (ft_is_local(lau->args[0]))
+		ft_local_export(lau->args[0], data);
 	close(lau->p[1]);
 	lau->fd_in = lau->p[0];
 	if (lau->args)

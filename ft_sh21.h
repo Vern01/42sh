@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 08:48:05 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/07 15:04:17 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/07 15:54:26 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ typedef struct	s_data
 	t_win	win;
 	t_line	*line;
 	char	**env;
+	char	**local;
 }				t_data;
 
 void			ft_add_char(t_line *l);
@@ -123,9 +124,9 @@ void			ft_check_redir_files(char *line);
 void			ft_clean_line(t_line *l, t_key key);
 int				ft_count_arg(char **args);
 char			**ft_cpyenv(char **env);
-int				ft_echo(char **args, char **env);
+int				ft_echo(char **args, t_data *data);
 char			ft_echo_case(char *str, int *i);
-int				ft_echo_env_var(char **env, char *arg);
+int				ft_echo_env_var(t_data *data, char *arg);
 int				ft_echo_str(char *str);
 int				ft_exc_cd(char *path, char **env);
 int				ft_exe_path(char **args, t_data *data);
@@ -171,4 +172,11 @@ char			*ft_sub_arg(char *line, int start, int end);
 char			**ft_trunc_args(char **args);
 int				ft_unsetenv(char **split, t_data *data);
 void			ft_update_pwd_env(char **env, char **value, int i);
+
+int				ft_is_local(char *line);
+char			*ft_get_local(t_data *data, char *search);
+int				ft_local_unset(t_data *data, char *var);
+void			ft_local_export(char *local, t_data *data);
+char			**ft_dupenv(char **env, int size);
+void			ft_print_locals(t_data *data);
 #endif
