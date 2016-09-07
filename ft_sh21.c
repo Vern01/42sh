@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/21 11:50:00 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/07 15:33:50 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/07 16:01:43 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static char	*ft_get_prompt(char **env)
 	return (t);
 }
 
-static void	ft_prompt(int oflag, char **env)
+void	ft_prompt(int oflag, char **env)
 {
 	int		check;
 	char	*p;
@@ -94,12 +94,11 @@ int			main(int ac, char **av)
 	data.line = ft_line_def();
 	while (1)
 	{
-		ft_prompt(oflag, data.env);
-		ft_get_next_line(0, &data.line);
-		ft_lines_entered(&data.line);
-		data.line->line = ft_check_qut(data.line->line);
-		if (data.line->line[0] != '\0')
+		data.line->line = get_line(data.line->line);
+		if (data.line->line != NULL && data.line->line[0] != '\0')
+			data.line->line = ft_check_qut(data.line->line);
+		if (data.line->line != NULL && data.line->line[0] != '\0')
 			data.env = ft_split_input(data.line->line, &data);
-		ft_line_add(&data.line);
+		ft_history_tower("reset", data.line->line);
 	}
 }

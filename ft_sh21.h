@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 08:48:05 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/07 15:54:26 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/07 16:02:14 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <termios.h>
 # include <curses.h>
 # include <term.h>
+# include "shell/shell.h"
 
 
 typedef struct	s_win
@@ -172,7 +173,6 @@ char			*ft_sub_arg(char *line, int start, int end);
 char			**ft_trunc_args(char **args);
 int				ft_unsetenv(char **split, t_data *data);
 void			ft_update_pwd_env(char **env, char **value, int i);
-
 int				ft_is_local(char *line);
 char			*ft_get_local(t_data *data, char *search);
 int				ft_local_unset(t_data *data, char *var);

@@ -6,7 +6,7 @@
 #    By: rojones <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/28 08:54:36 by rojones           #+#    #+#              #
-#    Updated: 2016/09/07 07:20:32 by oexall           ###   ########.fr        #
+#    Updated: 2016/09/07 16:03:55 by rojones          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,16 +30,26 @@ OBJ = ft_add_char.o ft_arglen.o ft_arrow_down.o ft_arrow_left.o ft_arrow_right.o
 	  ft_setenv.o ft_skip_spaces.o ft_split_input.o ft_str_qut_char.o \
 	  ft_trunc_args.o ft_unsetenv.o ft_update_env_pwd.o ft_local_export.o \
 	  ft_local_unset.o
+
+OBJ2 = shell/history.o shell/keys.o shell/keys_arrow.o shell/keys_ctrl.o \
+	   shell/keys_extra.o shell/keys_line.o shell/line_utils.o \
+	   shell/new_main.o shell/quotes.o shell/tools.o shell/shell_main.o \
+	   shell/auto_complete.o shell/auto_complete_tools.o shell/ft_lstsize.o\
+	   shell/auto_complete_read.o shell/auto_complete_print.o \
+	   shell/keys_ctrl_tools.c
+
 MAKELIB = make -C libft
 MAKELIBCLEAN = make -C libft clean
 
 $(NAME) : $(OBJ)
 	$(MAKELIB)
-	$(CCFLAGS) -lcurses -Llibft -lft -o $(NAME) ft_sh21.c $(OBJ)
+	@make -C shell/
+	$(CCFLAGS) -lcurses -Llibft -lft -o $(NAME) ft_sh21.c $(OBJ) $(OBJ2)
 
 all : $(NAME)
 
 clean :
+	@make -C shell/ clean
 	/bin/rm -f $(OBJ)
 
 fclean : clean
