@@ -1,21 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quotes.c                                           :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sasiedu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/07 12:09:38 by sasiedu           #+#    #+#             */
-/*   Updated: 2016/09/06 14:16:38 by sasiedu          ###   ########.fr       */
+/*   Created: 2016/09/07 10:37:12 by sasiedu           #+#    #+#             */
+/*   Updated: 2016/09/07 12:29:28 by sasiedu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "shell.h"
 
-void	ft_exec_quotes(t_term **sh)
+size_t	ft_lstsize(t_list *lst)
 {
-	ft_putstr((*sh)->prt);
-	(*sh)->std_cur = ft_strlen((*sh)->prt);
-	ft_memset((*sh)->line, 0, MAX_LEN);
-	tputs(tgetstr("sc", 0), 0, ft_shell_putchar);
+	t_list	*tmp;
+	size_t	size;
+
+	tmp = lst;
+	size = 0;
+	while (tmp != NULL)
+	{
+		size++;
+		tmp = tmp->next;
+	}
+	return (size);
 }

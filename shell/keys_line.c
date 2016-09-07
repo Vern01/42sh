@@ -6,7 +6,7 @@
 /*   By: sasiedu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/06 13:49:27 by sasiedu           #+#    #+#             */
-/*   Updated: 2016/09/06 13:16:57 by sasiedu          ###   ########.fr       */
+/*   Updated: 2016/09/07 15:07:39 by sasiedu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ void	ft_add_to_line(t_term **sh)
 	if (ret == 0)
 	{
 		(*sh)->my_cur += 1;
-		(*sh)->std_cur += 1;
+		if ((*sh)->buf[0] == 9)
+			(*sh)->std_cur += 5;
+		else
+			(*sh)->std_cur += 1;
 		if ((*sh)->std_cur >= tgetnum("co"))
 			(*sh)->std_cur = 0;
 		ft_reset_screen(&(*sh), (*sh)->my_cur, 0, 0);
@@ -49,6 +52,7 @@ void	ft_reset_screen(t_term **sh, int cur_pos, int w, int tmp)
 	while (tmp-- > 0)
 		tputs(tgetstr("do", 0), 0, ft_shell_putchar);
 	tputs(tgetstr("cr", 0), 0, ft_shell_putchar);
+	(*sh)->std_cur = (*sh)->std_cur % w;
 	ft_move_cursor_right((*sh)->std_cur);
 }
 
@@ -57,8 +61,11 @@ void	ft_remove_from_line(t_term **sh)
 	if ((*sh)->my_cur <= 0)
 		return ;
 	(*sh)->my_cur -= 1;
+	if ((*sh)->line[(*sh)->my_cur] == 9)
+		(*sh)->std_cur -= 5;
+	else
+		(*sh)->std_cur -= 1;
 	ft_remove_char_line(&(*sh)->line, (*sh)->my_cur, &(*sh)->len);
-	(*sh)->std_cur -= 1;
 	if ((*sh)->std_cur < 0)
 		(*sh)->std_cur = tgetnum("co") - 1;
 	ft_reset_screen(&(*sh), (*sh)->my_cur, 0, 0);

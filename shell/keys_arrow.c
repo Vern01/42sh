@@ -6,7 +6,7 @@
 /*   By: sasiedu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/07 00:44:15 by sasiedu           #+#    #+#             */
-/*   Updated: 2016/09/06 13:19:50 by sasiedu          ###   ########.fr       */
+/*   Updated: 2016/09/06 16:02:03 by sasiedu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	ft_up_key(t_term **sh)
 	(*sh)->my_cur = (*sh)->len;
 	(*sh)->std_cur = (ft_strlen((*sh)->prt) + (*sh)->len);
 	ft_reset_screen(&(*sh), (*sh)->my_cur, 0, 0);
-//	ft_strdel(&line);
+	if (line != NULL)
+		free(line);
 }
 
 void	ft_down_key(t_term **sh)
@@ -35,9 +36,9 @@ void	ft_down_key(t_term **sh)
 	char	*line;
 
 	line = ft_history_tower("DOWN", NULL);
-	ft_memset((*sh)->line, 0, MAX_LEN);
-	if (line == NULL)
+	if (line == NULL && (*sh)->current == NULL)
 		return ;
+	ft_memset((*sh)->line, 0, MAX_LEN);
 	if (line == NULL)
 	{
 		ft_strcpy((*sh)->line, (*sh)->current);
@@ -45,16 +46,12 @@ void	ft_down_key(t_term **sh)
 	}
 	else
 		ft_strcpy((*sh)->line, line);
-	(*sh)->len = ft_strlen(line);
+	(*sh)->len = ft_strlen((*sh)->line);
 	(*sh)->my_cur = (*sh)->len;
-//	puts("herh");
-//	usleep(400000);
 	(*sh)->std_cur = (ft_strlen((*sh)->prt) + (*sh)->len);
-//	puts("come");
-//	usleep(400000);
 	ft_reset_screen(&(*sh), (*sh)->my_cur, 0, 0);
-//	puts("done999999999");
-//	ft_strdel(&line);
+	if (line != NULL)
+		free(line);
 }
 
 void	ft_left_key(t_term **sh)

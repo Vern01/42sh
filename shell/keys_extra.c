@@ -6,7 +6,7 @@
 /*   By: sasiedu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/07 01:39:42 by sasiedu           #+#    #+#             */
-/*   Updated: 2016/09/06 12:29:12 by sasiedu          ###   ########.fr       */
+/*   Updated: 2016/09/07 14:01:58 by sasiedu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,7 @@ int		ft_enter_key(t_term **sh, int tmp, int i)
 
 	len = (ft_strlen((*sh)->prt) + (*sh)->len) % tgetnum("co");
 	if ((*sh)->std_usr == 0)
-		ft_history_tower("reset", (*sh)->line);
-	if ((*sh)->std_usr == 0)
 		(*sh)->save = ft_strdup((*sh)->line);
-	ft_check_quotes((*sh)->line, &(*sh), -1);
 	tputs(tgetstr("cr", 0), 0, ft_shell_putchar);
 	while (tmp++ <= (*sh)->nb_lines)
 		tputs(tgetstr("do", 0), 0, ft_shell_putchar);
@@ -30,12 +27,12 @@ int		ft_enter_key(t_term **sh, int tmp, int i)
 	(*sh)->nb_lines = 0;
 	(*sh)->my_cur = 0;
 	(*sh)->len = 0;
-//	ft_strdel(&(*sh)->prt);
 	if ((*sh)->std_usr == 1)
 		(*sh)->prt = ft_strdup(OTH);
 	else
 		(*sh)->prt = ft_strdup(USER);
 	tputs(tgetstr("cr", 0), 0, ft_shell_putchar);
+	tputs(tgetstr("cd", 0), 0, ft_shell_putchar);
 	return (1);
 }
 

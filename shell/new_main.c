@@ -6,7 +6,7 @@
 /*   By: sasiedu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 21:19:02 by sasiedu           #+#    #+#             */
-/*   Updated: 2016/09/06 12:23:33 by sasiedu          ###   ########.fr       */
+/*   Updated: 2016/09/07 13:19:49 by sasiedu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,9 @@ char	*get_line(char *line)
 	while (1)
 	{
 		ret = ft_read_entry(&shell);
-		if (ret == 1 && shell->std_usr == 1)
-			ft_exec_quotes(&shell);
-		if (ret == 1 && shell->std_usr == 0)
+		if (ret == 1)
 		{
 			line = ft_strdup(shell->line);
-			//free(shell);
 			return (line);
 		}
 	}

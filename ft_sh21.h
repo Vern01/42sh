@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 08:48:05 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/06 09:40:07 by sasiedu          ###   ########.fr       */
+/*   Updated: 2016/09/06 13:27:29 by sasiedu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ typedef struct	s_getredir
 {
 	int     i;  
 	int     j;  
-	int     qut;
+	int     s_qut;
+	int     d_qut;
 	char    *temp;
 	char    *temp2;
 	char    *temp3;
@@ -103,7 +104,7 @@ char			**ft_cd(char **args, t_data *data);
 void			ft_cd_home(t_data *data);
 void			ft_cd_opwd(t_data *data);
 int				ft_check_arg_op(char *str);
-void			ft_check_arg_case_len(char *line, int *qut, int *i);
+void			ft_check_arg_case_len(char *line, int *s_qut, int *d_qut, int *i);
 int				ft_check_dir(char *path, char *name);
 int				ft_check_env_var(char *arg, char **env);
 char			*ft_check_qut(char *line);

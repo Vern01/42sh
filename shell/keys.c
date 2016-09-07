@@ -6,7 +6,7 @@
 /*   By: sasiedu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 21:57:20 by sasiedu           #+#    #+#             */
-/*   Updated: 2016/09/06 12:02:00 by sasiedu          ###   ########.fr       */
+/*   Updated: 2016/09/07 15:07:41 by sasiedu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int		ft_single_ascii(t_term **sh)
 		ret = ft_enter_key(&(*sh), (*sh)->my_h, 0);
 	else if ((*sh)->buf[0] == 18)
 		ft_clear_screen(&(*sh));
+	else if ((*sh)->buf[0] == 9)
+		ret = ft_auto(&(*sh));
 	return (ret);
 }
 

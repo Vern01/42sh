@@ -6,31 +6,34 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/05 13:51:27 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/05 14:50:11 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/06 10:56:10 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh21.h"
 
-static int	ft_inc_word(char *line, int *i, int *qut)
+static int	ft_inc_word(char *line, int *i, int *s_qut, int *d_qut)
 {
 	int end;
 	int dig;
 	int op;
+	int	qut;
 
 	end = 0;
 	op = 0;
 	dig = 1;
+	qut = 0;
 	while (line[*i] && end == 0)
 	{
-		ft_check_arg_case_len(line, qut, i);
+		ft_check_arg_case_len(line, s_qut, d_qut, i);
+		qut = (*s_qut || d_qut) ? 1 : 0;
 		if (ft_isdigit(line[*i]) == 0 && ft_isop(line[*i]) == 0
 				&& line[*i] != '&')
 			dig = 0;
-		if (ft_isop(line[*i]) != 0 && *qut == 0 && dig == 1)
+		if (ft_isop(line[*i]) != 0 && qut == 0 && dig == 1)
 			op = 1;
-		if (line[*i] == '\0' || (ft_isspace(line[*i]) == 1 && *qut == 0)
-				|| (ft_isop(line[*i]) != 0 && *qut == 0 && dig == 0))
+		if (line[*i] == '\0' || (ft_isspace(line[*i]) == 1 && qut == 0)
+				|| (ft_isop(line[*i]) != 0 && qut == 0 && dig == 0))
 			end = 1;
 		else
 			*i = *i + 1;
@@ -47,7 +50,8 @@ static void	ft_init(t_getredir *tmp, int end)
 	tmp->templine1 = NULL;
 	tmp->templine2 = NULL;
 	tmp->i = end + 1;
-	tmp->qut = 0;
+	tmp->s_qut = 0;
+	tmp->d_qut = 0;
 }
 
 static void	ft_close(t_getredir *tmp, char **line)
@@ -76,7 +80,7 @@ static int	ft_get_next_word(t_getredir *tmp, char **line, char **re)
 {
 	ft_skip_space(*line, &tmp->i);
 	tmp->j = tmp->i;
-	if (ft_inc_word(*line, &tmp->i, &tmp->qut))
+	if (ft_inc_word(*line, &tmp->i, &tmp->s_qut, &tmp->d_qut))
 	{
 		ft_putstr_fd("Error: redirection peramiter missingi\n", 2);
 		return (-1);

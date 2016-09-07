@@ -6,7 +6,7 @@
 /*   By: sasiedu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 21:24:05 by sasiedu           #+#    #+#             */
-/*   Updated: 2016/09/06 12:30:31 by sasiedu          ###   ########.fr       */
+/*   Updated: 2016/09/07 14:40:52 by sasiedu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,12 @@ typedef	struct	s_term
 	char		*current;
 }				t_term;
 
+typedef	struct	s_auto
+{
+	int			nb;
+	int			len;
+}				t_auto;
+
 /*
 ***  shell main fucntions
 */
@@ -120,6 +126,8 @@ void			ft_right_key(t_term **sh);
 *** ctrl keys
 */
 int				ft_ctrl_key(t_term **sh);
+int				next_word(char *line, int i);
+int				prev_word(char *line, int i);
 void			ft_ctrl_home_key(t_term **sh, char *line, int i, int j);
 void			ft_ctrl_end_key(t_term **sh, char *line);
 
@@ -127,7 +135,23 @@ void			ft_ctrl_end_key(t_term **sh, char *line);
 *** extra functions
 */
 struct termios	ft_echo_off(int fd);
+size_t			ft_lstsize(t_list *lst);
 int				ft_shell_putchar(int c);
 void			ft_exec_quotes(t_term **sh);
+
+/*
+*** auto complete
+*/
+t_list			*get_auto_list(t_term **sh, t_auto *new, char *line);
+t_list			*auto_read_bin(t_list *lst, t_auto *new, char *line, int ret);
+t_list			*auto_read_dir(t_list *lst, t_auto *new, char *line, int ret);
+int				check_auto(char *line);
+int				ft_auto(t_term **sh);
+char			*get_auto_line(char *line);
+int				ft_auto_complete(t_term **sh, t_list *lst, t_list *tmp, \
+		int ret);
+void			auto_complete_print(t_list *lst, t_auto *new, int h, int cur);
+void			auto_move_cursor(int h, int w);
+void			auto_putstr(char *line, size_t size);
 
 #endif

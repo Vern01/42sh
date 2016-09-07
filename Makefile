@@ -6,7 +6,7 @@
 #    By: rojones <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/28 08:54:36 by rojones           #+#    #+#              #
-#    Updated: 2016/09/06 10:24:14 by sasiedu          ###   ########.fr        #
+#    Updated: 2016/09/07 14:13:56 by sasiedu          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,10 @@ OBJ = ft_add_char.o ft_arglen.o ft_arrow_down.o ft_arrow_left.o ft_arrow_right.o
 
 OBJ2 = shell/history.o shell/keys.o shell/keys_arrow.o shell/keys_ctrl.o \
 	   shell/keys_extra.o shell/keys_line.o shell/line_utils.o \
-	   shell/new_main.o shell/quotes.o shell/tools.o shell/shell_main.o
+	   shell/new_main.o shell/quotes.o shell/tools.o shell/shell_main.o \
+	   shell/auto_complete.o shell/auto_complete_tools.o shell/ft_lstsize.o\
+	   shell/auto_complete_read.o shell/auto_complete_print.o \
+	   shell/keys_ctrl_tools.c
 
 MAKELIB = make -C libft
 MAKELIBCLEAN = make -C libft clean

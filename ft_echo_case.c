@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/07 09:15:56 by rojones           #+#    #+#             */
-/*   Updated: 2016/07/20 17:44:11 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/06 13:08:29 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static int	ft_echo_case_cmd(char *str, int *i, char *re)
 
 	c = str[*i + 1];
 	check = 0;
-	if (c == '\\' || c == 'a' || c == 'b' || c == 'c' || c == 'e' || c == '"')
+	if (c == '\\' || c == 'a' || c == 'b' || c == 'c' || c == 'e' || c == '"'
+			|| c == '\'')
 		check = 1;
 	if (c == '\\')
 		*re = '\\';
@@ -33,6 +34,8 @@ static int	ft_echo_case_cmd(char *str, int *i, char *re)
 		*re = 27;
 	else if (c == '"')
 		*re = '"';
+	else if (c == '\'')
+		*re = '\'';
 	if (check == 1)
 		*i = *i + 1;
 	return (check);
