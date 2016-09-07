@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/07 07:10:43 by oexall            #+#    #+#             */
-/*   Updated: 2016/09/07 07:19:48 by oexall           ###   ########.fr       */
+/*   Updated: 2016/09/07 14:53:45 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int		ft_local_unset(t_data *data, char *name)
 {
 	int	rm;
 
-	if (!name || !ft_get_local(data, name))
+	if (data->local == NULL || !name || !ft_get_local(data, name))
 		return (1);
 	rm = 0;
 	while (data->local[rm])
