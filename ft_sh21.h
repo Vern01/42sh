@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 08:48:05 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/07 14:42:01 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/07 15:04:17 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,7 @@ char			*ft_extract_arg(int len, int start, int *end, char *line);
 char			*ft_extract_redir(char **line, char *redir, int st, int end);
 void			ft_env(char **split, char **env);
 void			ft_free_line(t_line *line);
-char			**ft_get_comm(char **args, t_data *data, int pipe);
+int				ft_get_comm(char **args, t_data *data, int pipe);
 char			*ft_get_env_var(char **env, int ind);
 int				ft_get_next_line(int const fd, t_line **l);
 char			*ft_get_redir(char **line);
@@ -148,7 +148,7 @@ t_line			*ft_line_def();
 void			ft_line_save(t_line **l);
 void			ft_lines_entered(t_line **l);
 char			**ft_loop_redir_out(t_launch *lau, t_data *data, char **env,
-		int i);
+				int i);
 int				ft_next_op(char **args);
 int				ft_num_args(char *s);
 char			**ft_op_order(char **args, char **env);

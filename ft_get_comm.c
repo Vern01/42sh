@@ -6,13 +6,13 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 09:41:54 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/07 14:38:24 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/07 15:04:09 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh21.h"
 
-char	**ft_get_comm(char **split, t_data *data, int pipe)
+int	ft_get_comm(char **split, t_data *data, int pipe)
 {
 	char	*path;
 	int		block;
@@ -24,13 +24,13 @@ char	**ft_get_comm(char **split, t_data *data, int pipe)
 		if (strcmp(split[0], "exit") == 0)
 			ft_exit(split, data);
 		else if (strcmp(split[0], "echo") == 0)
-			ft_echo(split, data->env);
+			return (ft_echo(split, data->env));
 		else if (strcmp(split[0], "cd") == 0 && ++block && pipe == 1)
-			ft_cd(split, data);
+			return (ft_cd(split, data));
 		else if (strcmp(split[0], "setenv") == 0 && ++block && pipe == 1)
-			ft_setenv(split, data);
+			return (ft_setenv(split, data));
 		else if (strcmp(split[0], "unsetenv") == 0 && ++block && pipe == 1)
-			data->env = ft_unsetenv(split, data);
+			return (ft_unsetenv(split, data));
 		else if (strcmp(split[0], "env") == 0)
 			ft_env(split, data->env);
 		else if (block == 0 && (path = ft_search_path(split, data)) != NULL)
@@ -39,5 +39,5 @@ char	**ft_get_comm(char **split, t_data *data, int pipe)
 			ft_printf("command not found: %s\n", split[0]);
 		ft_strdel(&path);
 	}
-	return (data->env);
+	return(EXIT_FAILURE);
 }
