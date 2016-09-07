@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/01 13:36:10 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/07 11:50:01 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/07 12:56:34 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,6 @@ static void	ft_perent(t_launch *lau, t_data *data, int	*stat)
 {
 	wait(stat);
 	*stat = WEXITSTATUS(*stat);
-//	*stat = WIFEXITED(*stat);
-	ft_printf("stat %d\n", *stat);
 	if (ft_strcmp(lau->args[0], "exit") == 0)
 		ft_exit(lau->args, data);
 	else if (strcmp(lau->args[0], "cd") == 0)

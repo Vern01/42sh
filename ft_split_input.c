@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/22 12:49:21 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/07 11:51:14 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/07 12:58:20 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ static int	run_comparison(t_data *data, t_split_log *log)
 		data->env = ft_launch(log->temp, data, &log->stat);
 	else
 	{
-		printf("log->stat %d\n", log->stat);
 		if (log->last_op == 1 && log->stat == 1)
 			data->env = ft_launch(log->temp, data, &log->stat);
 		else if (log->last_op == 2 && log->stat == 0)
@@ -77,13 +76,15 @@ char	**ft_split_input_op(char *line, t_data *data)
 		if (log.log == line)
 			return (data->env);
 		log.temp = ft_strsub(log.mv, 0, (int)(log.log - log.mv));
-		run_comparison(data, &log);
+		if (run_comparison(data, &log) == -1)
+			 return (data->env);
 		log.last_op = log.op;
 		log.init = 1;
 		log.mv = log.log + 2;
 	}
 	log.temp = ft_strdup(log.mv);
-	run_comparison(data, &log);
+	if (run_comparison(data, &log) == -1)
+			 return (data->env);
 	return (data->env);
 }
 
