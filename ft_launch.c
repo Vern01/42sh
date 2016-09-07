@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/01 13:36:10 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/07 15:04:21 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/07 15:22:10 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,10 @@ static void	ft_perent(t_launch *lau, t_data *data, int	*stat)
 static void	ft_chiled(char **env, t_launch *lau, t_data *data)
 {
 	int	j;
+	int	re;
 
 	j = -1;
+	re = EXIT_FAILURE;
 	dup2(lau->fd_in, 0);
 	if (lau->in)
 	{
@@ -112,14 +114,14 @@ static void	ft_chiled(char **env, t_launch *lau, t_data *data)
 	{
 		env = ft_loop_redir_out(lau, data, env, 0);
 		dup2(lau->p[1], 1);
-		env = ft_get_comm(lau->args, data, lau->pipe);
+		re = ft_get_comm(lau->args, data, lau->pipe);
 	}
 	else
 	{
 		if (lau->out && lau->out[0])
 			env = ft_loop_redir_out(lau, data, env, 0);
 		else
-			env = ft_get_comm(lau->args, data, lau->pipe);
+			re = ft_get_comm(lau->args, data, lau->pipe);
 	}
 	close(lau->p[0]);
 	exit(EXIT_FAILURE);
