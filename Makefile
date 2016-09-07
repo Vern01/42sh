@@ -6,7 +6,7 @@
 #    By: rojones <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/28 08:54:36 by rojones           #+#    #+#              #
-#    Updated: 2016/09/06 13:50:13 by oexall           ###   ########.fr        #
+#    Updated: 2016/09/07 07:20:32 by oexall           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ OBJ = ft_add_char.o ft_arglen.o ft_arrow_down.o ft_arrow_left.o ft_arrow_right.o
 	  ft_split_arg_op.o \
 	  ft_split_line_op.o ft_split_redir.o ft_search_path.o \
 	  ft_setenv.o ft_skip_spaces.o ft_split_input.o ft_str_qut_char.o \
-	  ft_trunc_args.o ft_unsetenv.o ft_update_env_pwd.o ft_local_export.o
+	  ft_trunc_args.o ft_unsetenv.o ft_update_env_pwd.o ft_local_export.o \
+	  ft_local_unset.o
 MAKELIB = make -C libft
 MAKELIBCLEAN = make -C libft clean
 
@@ -248,3 +249,6 @@ ft_update_env_pwd.o : ft_update_env_pwd.c
 
 ft_local_export.o : ft_local_export.c
 	$(CCFLAGS) -c ft_local_export.c
+
+ft_local_unset.o : ft_local_unset.c
+	$(CCFLAGS) -c ft_local_unset.c

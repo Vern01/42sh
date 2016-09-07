@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 08:48:05 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/06 14:42:32 by oexall           ###   ########.fr       */
+/*   Updated: 2016/09/07 07:21:52 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,6 +162,8 @@ char			**ft_unsetenv(char **split, t_data *data);
 void			ft_update_pwd_env(char **env, char **value, int i);
 
 int				ft_is_local(char *line);
+char			*ft_get_local(t_data *data, char *search);
+int				ft_local_unset(t_data *data, char *var);
 void			ft_local_export(char *local, t_data *data);
 char			**ft_dupenv(char **env, int size);
 void			ft_print_locals(t_data *data);
