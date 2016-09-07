@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/01 13:36:10 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/31 11:13:38 by oexall           ###   ########.fr       */
+/*   Updated: 2016/09/07 11:50:01 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,12 @@ static void	ft_close(t_launch *lau, int full)
 		ft_free_str_arr(&lau->in);
 }
 
-static void	ft_perent(t_launch *lau, t_data *data)
+static void	ft_perent(t_launch *lau, t_data *data, int	*stat)
 {
-	wait(NULL);
+	wait(stat);
+	*stat = WEXITSTATUS(*stat);
+//	*stat = WIFEXITED(*stat);
+	ft_printf("stat %d\n", *stat);
 	if (ft_strcmp(lau->args[0], "exit") == 0)
 		ft_exit(lau->args, data);
 	else if (strcmp(lau->args[0], "cd") == 0)
@@ -120,7 +123,7 @@ static void	ft_chiled(char **env, t_launch *lau, t_data *data)
 	exit(EXIT_FAILURE);
 }
 
-char		**ft_launch(char *line, t_data *data)
+char		**ft_launch(char *line, t_data *data, int *stat)
 {
 	t_launch	lau;
 
@@ -143,7 +146,7 @@ char		**ft_launch(char *line, t_data *data)
 			else if (lau.pid == 0)
 				ft_chiled(data->env, &lau, data);
 			else
-				ft_perent(&lau, data);
+				ft_perent(&lau, data, stat);
 		}
 		ft_close(&lau, 0);
 	}

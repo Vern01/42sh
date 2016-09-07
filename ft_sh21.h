@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 08:48:05 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/06 10:55:55 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/07 11:18:51 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,17 @@ typedef struct	s_getredir
 	char    *templine1;
 	char    *templine2;
 }				t_getredir;
+
+typedef struct	s_split_log
+{
+	char    *log;
+	char    *mv;
+	char    *temp;
+	int     stat;
+	int     last_op;
+	int     op;
+	int     init;
+}				t_split_log;
 
 typedef struct	s_launch
 {
@@ -130,13 +141,13 @@ char			*ft_get_redir(char **line);
 int				ft_isop(char c);
 void			ft_init_win(t_win *win);
 void			ft_key_pressed(char *s, t_line **l);
-char			**ft_launch(char *line, t_data *data);
+char			**ft_launch(char *line, t_data *data, int *stat);
 void			ft_line_add(t_line **l);
 t_line			*ft_line_def();
 void			ft_line_save(t_line **l);
 void			ft_lines_entered(t_line **l);
 char			**ft_loop_redir_out(t_launch *lau, t_data *data, char **env,
-				int i);
+		int i);
 int				ft_next_op(char **args);
 int				ft_num_args(char *s);
 char			**ft_op_order(char **args, char **env);
