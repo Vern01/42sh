@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 16:49:16 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/07 07:25:20 by oexall           ###   ########.fr       */
+/*   Updated: 2016/09/07 15:04:35 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	**ft_rm_env_var(char **env, int rm_ind)
 
 char	**ft_unsetenv_err(t_data *data)
 {
-	ft_putstr("No args passed.");
+	ft_putstr("No args passed.\n");
 	return (data->env);
 }
 
