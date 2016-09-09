@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 12:10:35 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/06 12:00:06 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/09 08:50:53 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	ft_inc_word(char *line, int *i, int *s_qut, int *d_qut)
 	dig = 1;
 	while (line[*i] && end == 0)
 	{
-		ft_check_arg_case_len(line, s_qut, d_qut,  i);
+		ft_check_arg_case_len(line, s_qut, d_qut, i);
 		qut = (*s_qut || *d_qut) ? 1 : 0;
 		if (ft_isdigit(line[*i]) == 0 && ft_isop(line[*i]) == 0
 				&& line[*i] != '&')

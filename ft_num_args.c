@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/01 16:26:27 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/06 12:03:06 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/09 09:27:11 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,6 @@ static int	ft_inc_word(char *line, int *i, int *s_qut, int *d_qut)
 	return (re);
 }
 
-/*static int	ft_get_qut(char *line)
-{
-	char	*line2;
-	char	*temp;
-	int		re;
-
-	temp = NULL;
-	line2 = NULL;
-	ft_putstr("quote>");
-	if (get_next_line(0, &line2) > 0)
-	{
-		temp = ft_strjoin(line, line2);
-	}
-	re = ft_num_args(temp);
-	if (temp)
-		free(temp);
-	if (line2)
-		free(line2);
-	return (re);
-}*/
-
 int			ft_num_args(char *line)
 {
 	int		re;
@@ -75,7 +54,5 @@ int			ft_num_args(char *line)
 		while (line[i] != '\0' && ft_isop(line[i]) == 1)
 			i++;
 	}
-//	if (qut == 1)
-//		re = ft_get_qut(line);
 	return (re);
 }

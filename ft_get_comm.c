@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 09:41:54 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/09 08:27:30 by vivan-de         ###   ########.fr       */
+/*   Updated: 2016/09/09 08:51:39 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,5 @@ int	ft_get_comm(char **s, t_data *data, int p)
 			ft_printf("command not found: %s\n", s[0]);
 		ft_strdel(&path);
 	}
-	return(EXIT_FAILURE);
+	return (EXIT_FAILURE);
 }
