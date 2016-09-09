@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/01 13:51:03 by rojones           #+#    #+#             */
-/*   Updated: 2016/08/31 10:20:53 by oexall           ###   ########.fr       */
+/*   Updated: 2016/09/09 15:04:15 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,25 @@ static char	*ft_check_exe_path(char *path, char *name)
 	return (NULL);
 }
 
-static char	*ft_check_abs_path(char *path)
+static char	*ft_check_abs_path(char *path, t_data *data, int *script)
 {
 	if (access(path, R_OK) == 0)
 	{
 		if (access(path, X_OK) == 0)
-			return (ft_strdup(path));
+		{
+			if (ft_strstr(path, ".sh"))
+			{
+				ft_run_script(path, data);
+				*script = 1;
+			}
+			else
+				puts("return path");
+		}
 	}
 	return (NULL);
 }
 
-char		*ft_search_path(char **args, t_data *data)
+char		*ft_search_path(char **args, t_data *data, int *script)
 {
 	char	**spath;
 	char	*val;
@@ -54,7 +62,7 @@ char		*ft_search_path(char **args, t_data *data)
 	int		i;
 
 	val = ft_get_env_var(data->env, ft_check_env_var("PATH", data->env));
-	path = ft_check_abs_path(args[0]);
+	path = ft_check_abs_path(args[0], data, script);
 	if (val != NULL)
 	{
 		spath = ft_strsplit(val, ':');

@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 08:48:05 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/07 16:02:14 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/09 14:52:43 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,8 @@ int				ft_redir_over(char *redir, char *op);
 char			**ft_rem_args(char **args);
 void			ft_remove_char(t_line *l);
 void			ft_restor_win(t_win *win);
-char			*ft_search_path(char **args, t_data *data);
+void			ft_run_script(char *path, t_data *data);
+char			*ft_search_path(char **args, t_data *data, int *script);
 int				ft_setenv(char **split, t_data *data);
 void			ft_skip_space(char *line, int *i);
 char			***ft_split_arg_op(char **args);

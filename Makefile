@@ -6,7 +6,7 @@
 #    By: rojones <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/28 08:54:36 by rojones           #+#    #+#              #
-#    Updated: 2016/09/09 06:46:49 by oexall           ###   ########.fr        #
+#    Updated: 2016/09/09 10:47:55 by rojones          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ OBJ = ft_add_char.o ft_arglen.o ft_arrow_down.o ft_arrow_left.o ft_arrow_right.o
 	  ft_lines_entered.o ft_loop_redir_out.o\
 	  ft_pwd_var.o ft_next_op.o ft_num_args.o ft_redir_in.o ft_redir_out.o \
 	  ft_redir_over.o ft_rem_args.o ft_remove_char.o ft_restor_win.o \
-	  ft_split_arg_op.o \
+	  ft_split_arg_op.o ft_run_script.o\
 	  ft_split_line_op.o ft_split_redir.o ft_search_path.o \
 	  ft_setenv.o ft_skip_spaces.o ft_split_input.o ft_str_qut_char.o \
 	  ft_trunc_args.o ft_unsetenv.o ft_update_env_pwd.o ft_local_export.o \
@@ -223,6 +223,9 @@ ft_redir_over.o : ft_redir_over.c
 
 ft_restor_win.o : ft_restor_win.c
 	$(CCFLAGS) -c ft_restor_win.c
+
+ft_run_script.o : ft_run_script.c
+	$(CCFLAGS) -c ft_run_script.c 
 
 ft_search_path.o : ft_search_path.c
 	$(CCFLAGS) -c ft_search_path.c
