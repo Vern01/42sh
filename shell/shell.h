@@ -6,7 +6,7 @@
 /*   By: sasiedu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 21:24:05 by sasiedu           #+#    #+#             */
-/*   Updated: 2016/09/07 14:40:52 by sasiedu          ###   ########.fr       */
+/*   Updated: 2016/09/09 16:26:02 by sasiedu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ typedef	struct	s_term
 	int			std_cur;
 	int			my_h;
 	int			len;
+	int			i;
+	int			j;
 	int			std_usr;
 	char		*prt;
 	char		buf[3];
@@ -100,6 +102,8 @@ int				ft_add_char_line(char **line, const char c, \
 		int pos, int *size);
 int				ft_remove_char_line(char **line, int pos, int *size);
 void			ft_reset_screen(t_term **sh, int cur_pos, int w, int tmp);
+void			ft_reset_screen2(t_term **sh, int cur_pos, int w, int tmp);
+void			get_new_cursor_position(t_term **sh, int width);
 void			ft_move_cursor_right(int tmp);
 void			ft_move_cursor_left(int tmp);
 void			ft_check_quotes(char *line, t_term **sh, int i);
@@ -130,6 +134,19 @@ int				next_word(char *line, int i);
 int				prev_word(char *line, int i);
 void			ft_ctrl_home_key(t_term **sh, char *line, int i, int j);
 void			ft_ctrl_end_key(t_term **sh, char *line);
+
+/*
+*** shift keys, copy, cut && paste functions
+*/
+int				select_input(t_term **sh);
+int				copy(t_term **sh);
+int				cut(t_term **sh);
+int				paste(t_term **sh);
+void			ft_shift_key(t_term **sh);
+void			ft_shift_up_down(t_term **sh, int index);
+void			select_mode(t_term **sh);
+void			select_right(t_term **sh);
+void			select_left(t_term **sh);
 
 /*
 *** extra functions

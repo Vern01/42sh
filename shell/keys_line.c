@@ -6,7 +6,7 @@
 /*   By: sasiedu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/06 13:49:27 by sasiedu           #+#    #+#             */
-/*   Updated: 2016/09/07 15:07:39 by sasiedu          ###   ########.fr       */
+/*   Updated: 2016/09/09 16:25:57 by sasiedu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,11 @@ void	ft_reset_screen(t_term **sh, int cur_pos, int w, int tmp)
 	tputs(tgetstr("cr", 0), 0, ft_shell_putchar);
 	ft_putstr((*sh)->prt);
 	tputs((*sh)->line, 0, ft_shell_putchar);
-	tputs(tgetstr("rc", 0), 0, ft_shell_putchar);
 	tmp = (*sh)->my_h;
-	while (tmp-- > 0)
-		tputs(tgetstr("do", 0), 0, ft_shell_putchar);
 	tputs(tgetstr("cr", 0), 0, ft_shell_putchar);
 	(*sh)->std_cur = (*sh)->std_cur % w;
-	ft_move_cursor_right((*sh)->std_cur);
+	get_new_cursor_position(&(*sh), w);
+	ft_reset_screen2(&(*sh), cur_pos, w, tmp);
 }
 
 void	ft_remove_from_line(t_term **sh)

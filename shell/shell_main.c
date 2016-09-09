@@ -6,7 +6,7 @@
 /*   By: sasiedu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 21:41:25 by sasiedu           #+#    #+#             */
-/*   Updated: 2016/09/07 13:19:35 by sasiedu          ###   ########.fr       */
+/*   Updated: 2016/09/09 16:32:49 by sasiedu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_term			*ft_init_shell(void)
 	sh->my_cur = 0;
 	sh->my_h = 0;
 	sh->std_usr = 0;
-	sh->save = NULL;
+	sh->save = ft_strnew(MAX_LEN);
 	sh->current = NULL;
 	sh->prt = ft_strdup(USER);
 	ft_memset(sh->buf, 0, 3);

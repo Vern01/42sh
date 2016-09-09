@@ -6,7 +6,7 @@
 /*   By: sasiedu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 21:57:20 by sasiedu           #+#    #+#             */
-/*   Updated: 2016/09/07 15:07:41 by sasiedu          ###   ########.fr       */
+/*   Updated: 2016/09/09 15:51:23 by sasiedu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ int		ft_special_key(t_term **sh)
 	read(0, (*sh)->buf, 3);
 	if ((*sh)->buf[1] == 53)
 		ret = ft_ctrl_key(&(*sh));
+	else if ((*sh)->buf[1] == 50)
+		ft_shift_key(&(*sh));
 	return (ret);
 }
 
