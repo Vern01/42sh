@@ -6,11 +6,11 @@
 #    By: rojones <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/28 08:54:36 by rojones           #+#    #+#              #
-#    Updated: 2016/09/07 16:03:55 by rojones          ###   ########.fr        #
+#    Updated: 2016/09/09 06:46:49 by oexall           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = sh21
+NAME = 42sh
 CCFLAGS = gcc -Wall -Werror -Wextra -g3
 OBJ = ft_add_char.o ft_arglen.o ft_arrow_down.o ft_arrow_left.o ft_arrow_right.o ft_arrow_up.o\
 	  ft_backspace.o ft_build_env_var.o ft_cd.o ft_cd_home.o ft_clean_line.o\
