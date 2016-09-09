@@ -6,7 +6,7 @@
 /*   By: oexall <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/06 10:43:37 by oexall            #+#    #+#             */
-/*   Updated: 2016/09/06 14:48:40 by oexall           ###   ########.fr       */
+/*   Updated: 2016/09/09 12:43:39 by oexall           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 char	*ft_get_local(t_data *data, char *search)
 {
-	int	i;
+	int		i;
 
 	i = -1;
+	if (!search || data->local == NULL)
+		return (NULL);
 	while (data->local[++i])
 		if (ft_strncmp(data->local[i], search, ft_strlen(search)) == 0)
 			return (data->local[i]);
@@ -38,6 +40,8 @@ int		ft_is_local(char *line)
 	char	*e_pos;
 
 	tmp = line;
+	if (*tmp == '$')
+		return (0);
 	if ((e_pos = ft_strchr(line, '=')) == NULL)
 		return (0);
 	while (*tmp != *e_pos)
