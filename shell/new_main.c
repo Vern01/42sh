@@ -6,7 +6,7 @@
 /*   By: sasiedu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/01 21:19:02 by sasiedu           #+#    #+#             */
-/*   Updated: 2016/09/09 16:22:59 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/09 16:41:00 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 char	*get_line(char *line)
 {
-	static int i = 1;
-	t_term	*shell;
-	int		ret;
+	static int	i = 1;
+	t_term		*shell;
+	int			ret;
 
 	if (i == 1)
 	{

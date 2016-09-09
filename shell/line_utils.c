@@ -6,7 +6,7 @@
 /*   By: sasiedu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/06 13:52:22 by sasiedu           #+#    #+#             */
-/*   Updated: 2016/09/07 15:07:44 by sasiedu          ###   ########.fr       */
+/*   Updated: 2016/09/09 16:32:36 by sasiedu          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int		ft_remove_char_line(char **line, int pos, int *size)
 void	ft_check_quotes(char *line, t_term **sh, int i)
 {
 	static int	chk2 = 0;
-	static int chk = 0;
+	static int	chk = 0;
 
 	chk2 = 0;
 	while (line[++i] != '\0')
