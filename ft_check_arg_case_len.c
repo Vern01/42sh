@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/30 14:20:17 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/06 10:48:05 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/08 07:35:32 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	ft_check_arg_case_len_z(char *line, int *s_qut, int *d_qut, int *i)
 	}
 }
 
-void		ft_check_arg_case_len(char *line, int *s_qut, int *d_qut,int *i)
+void		ft_check_arg_case_len(char *line, int *s_qut, int *d_qut, int *i)
 {
 	if (*i > 0)
 		ft_check_arg_case_len_i(line, s_qut, d_qut, i);

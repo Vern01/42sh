@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 12:58:23 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/07 14:11:48 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/08 07:36:08 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	ft_check_dir_cd(char *path, char **env)
 	return (re);
 }
 
-int		ft_cd(char **args, t_data *data)
+int			ft_cd(char **args, t_data *data)
 {
 	char	*path;
 	int		re;

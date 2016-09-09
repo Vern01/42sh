@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 10:09:47 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/07 15:49:02 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/08 07:37:00 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static int	ft_echo_mode(char **args, t_echo_flag echo_flag, t_data *dat, int i)
 	return (re);
 }
 
-int		ft_echo(char **args, t_data *data)
+int			ft_echo(char **args, t_data *data)
 {
 	t_echo_flag	echo_flag;
 	int			i;

@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/08 15:04:19 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/07 13:22:03 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/08 07:34:54 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ int	ft_cd_opwd(t_data *data)
 	int		varloc;
 	char	**split;
 
-	varloc = ft_check_env_var("OLDPWD", data->env);
-	if (varloc == -1)
+	if ((varloc = ft_check_env_var("OLDPWD", data->env)) == -1)
 	{
 		ft_putstr("cd: failed to get OLDPWD path\n");
 		return (EXIT_FAILURE);

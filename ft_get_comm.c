@@ -6,43 +6,62 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 09:41:54 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/07 15:45:26 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/08 08:06:59 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh21.h"
 
-int	ft_get_comm(char **split, t_data *data, int pipe)
+int	contains_command(char *s)
+{
+	if (strcmp(s[0], "echo") == 0)
+		;
+	else if (strcmp(s, "cd") == 0)
+		return (1);
+	else if ((strcmp(s, "setenv") == 0 || strcmp(s, "export") == 0))
+		return (1);
+	else if ((strcmp(s, "unsetenv") == 0 || strcmp(split[0], "unset") == 0))
+		return (1);
+	return (0);
+}
+
+int	ft_get_block(char *s, int *block, int *pipe)
+{
+	if (strcmp(s, "cd") == 0 && (*block += 1) && *pipe == 1)
+		return (ft_cd(split, data));
+	else if ((strcmp(s, "setenv") == 0 ||
+			strcmp(s, "export") == 0) && (*block += 1) && *pipe == 1)
+		return (ft_setenv(split, data));
+	else if ((strcmp(s, "unsetenv") == 0 ||
+			strcmp(split[0], "unset") == 0) && (*block += 1) && *pipe == 1)
+		return (ft_unsetenv(split, data));
+}
+
+int	ft_get_comm(char **s, t_data *data, int p)
 {
 	char	*path;
-	int		block;
+	int		b;
 
 	path = NULL;
-	block = 0;
-	if (split[0])
+	b = 0;
+	if (s[0])
 	{
-		if (strcmp(split[0], "exit") == 0)
-			ft_exit(split, data);
-		else if (strcmp(split[0], "echo") == 0)
-			return (ft_echo(split, data));
-		else if (strcmp(split[0], "cd") == 0 && ++block && pipe == 1)
-			return (ft_cd(split, data));
-		else if ((strcmp(split[0], "setenv") == 0 ||
-				strcmp(split[0], "export") == 0) && ++block && pipe == 1)
-			return (ft_setenv(split, data));
-		else if ((strcmp(split[0], "unsetenv") == 0 ||
-				strcmp(split[0], "unset") == 0) && ++block && pipe == 1)
-			return (ft_unsetenv(split, data));
-		else if (strcmp(split[0], "env") == 0)
-			ft_env(split, data->env);
-		else if (block == 0 && (path = ft_search_path(split, data)) != NULL)
-			execve(path, split, data->env);
-		else if (ft_is_local(split[0]))
-			ft_local_export(split[0], data);
-		else if (strcmp(split[0], "printll") == 0)
+		if (strcmp(s[0], "exit") == 0)
+			ft_exit(s, data);
+		else if (strcmp(s[0], "echo") == 0)
+			return (ft_echo(s, data));
+		else if (contains_command(s[0]))
+			return (ft_get_block(s[0], &b, &p));
+		else if (strcmp(s[0], "env") == 0)
+			ft_env(s, data->env);
+		else if (b == 0 && (path = ft_search_path(s, data)) != NULL)
+			execve(path, s, data->env);
+		else if (ft_is_local(s[0]))
+			ft_local_export(s[0], data);
+		else if (strcmp(s[0], "printll") == 0)
 			ft_print_locals(data);
-		else if (block == 0)
-			ft_printf("command not found: %s\n", split[0]);
+		else if (b == 0)
+			ft_printf("command not found: %s\n", s[0]);
 		ft_strdel(&path);
 	}
 	return(EXIT_FAILURE);
