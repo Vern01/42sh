@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/09 10:37:36 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/09 15:20:43 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/09 16:56:15 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_run_script(char *path, t_data *data)
 {
-	puts("run script called");
 	int		fd;
 	char	*line;
 
@@ -24,7 +23,7 @@ void	ft_run_script(char *path, t_data *data)
 		if (line && line[0])
 			line = ft_check_qut(line);
 		if (line && line[0])
-			ft_split_input(line, data);	
+			ft_split_input(line, data);
 		ft_strdel(&line);
 	}
 	close(fd);
