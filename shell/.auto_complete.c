@@ -6,7 +6,7 @@
 /*   By: sasiedu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/09/06 16:17:27 by sasiedu           #+#    #+#             */
-/*   Updated: 2016/09/07 13:49:31 by sasiedu          ###   ########.fr       */
+/*   Updated: 2016/09/09 16:47:44 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,12 @@ int		ft_auto(t_term **sh)
 
 int		ft_auto_complete(t_term **sh, t_list *lst, t_list *tmp, int ret)
 {
+	int		i;
 	t_auto	new;
 	char	*line;
 
 	new.len = 0;
+	i = ft_strlen((*sh)->prt);
 	lst = get_auto_list(&(*sh), &new, (*sh)->line);
 	line = get_auto_line((*sh)->line);
 	while (ret > 0 && (*sh)->buf[0] == 9   && lst != NULL)
@@ -62,6 +64,12 @@ int		ft_auto_complete(t_term **sh, t_list *lst, t_list *tmp, int ret)
 		(*sh)->my_cur = ft_strlen((*sh)->line);
 		(*sh)->len = ft_strlen((*sh)->line);
 		(*sh)->std_cur = (ft_strlen((*sh)->prt) + (*sh)->my_cur) % tgetnum("co");
+		tputs(tgetstr("cr", 0), 0, ft_shell_putchar);
+//		while (--i)
+		tputs(tgetstr("nd", 0), 0, ft_shell_putchar);
+		tputs(tgetstr("nd", 0), 0, ft_shell_putchar);
+		tputs(tgetstr("nd", 0), 0, ft_shell_putchar);
+		tputs(tgetstr("sc", 0), 0, ft_shell_putchar);
 		ft_reset_screen(&(*sh), (*sh)->my_cur, 0, 0);
 		if (ft_lstsize(lst) > 1)
 			auto_complete_print(lst, &new, 0, (*sh)->std_cur);

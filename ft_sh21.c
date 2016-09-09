@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/21 11:50:00 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/07 16:01:43 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/09 16:26:00 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static char	*ft_get_prompt(char **env)
 	return (t);
 }
 
-void	ft_prompt(int oflag, char **env)
+void		ft_prompt(int oflag, char **env)
 {
 	int		check;
 	char	*p;
@@ -84,8 +84,8 @@ void	ft_prompt(int oflag, char **env)
 int			main(int ac, char **av)
 {
 	t_data		data;
-	extern char **environ;
-	int         oflag;
+	extern char	**environ;
+	int			oflag;
 
 	ft_init_win(&data.win);
 	data.env = ft_cpyenv(environ);
@@ -98,7 +98,8 @@ int			main(int ac, char **av)
 		if (data.line->line != NULL && data.line->line[0] != '\0')
 			data.line->line = ft_check_qut(data.line->line);
 		if (data.line->line != NULL && data.line->line[0] != '\0')
-			data.env = ft_split_input(data.line->line, &data);
+			data.env = ft_split_input(
+					ft_local_process(data.line->line, &data), &data);
 		ft_history_tower("reset", data.line->line);
 	}
 }

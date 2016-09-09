@@ -6,7 +6,7 @@
 #    By: rojones <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/28 08:54:36 by rojones           #+#    #+#              #
-#    Updated: 2016/09/09 06:46:49 by oexall           ###   ########.fr        #
+#    Updated: 2016/09/09 16:46:40 by rojones          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,26 +17,27 @@ OBJ = ft_add_char.o ft_arglen.o ft_arrow_down.o ft_arrow_left.o ft_arrow_right.o
 	  ft_cd_opwd.o ft_check_arg_case_len.o ft_check_arg_op.o ft_check_dir.o \
 	  ft_check_env_var.o ft_check_redir_files.o ft_count_arg.o ft_cpyenv.o \
 	  ft_echo.o ft_echo_env_var.o ft_echo_str.o ft_env.o ft_echo_case.o \
-	  ft_exc_cd.o ft_exe_path.o ft_exit.o ft_extract_arg.o ft_extract_args.o \
+	  ft_exc_cd.o ft_exit.o ft_extract_arg.o ft_extract_args.o \
 	  ft_extract_redir.o ft_free_line.o ft_get_comm.o ft_get_env_var.o \
 	  ft_get_next_line.o \
 	  ft_get_qut.o ft_get_redir.o ft_init_win.o ft_isop.o ft_key_pressed.o\
-	  ft_launch.o ft_line_add.o ft_line_def.o ft_line_save.o \
+	  ft_launch.o ft_launch_redir.o ft_line_add.o ft_line_def.o ft_line_save.o \
 	  ft_lines_entered.o ft_loop_redir_out.o\
 	  ft_pwd_var.o ft_next_op.o ft_num_args.o ft_redir_in.o ft_redir_out.o \
 	  ft_redir_over.o ft_rem_args.o ft_remove_char.o ft_restor_win.o \
-	  ft_split_arg_op.o \
+	  ft_split_arg_op.o ft_run_script.o\
 	  ft_split_line_op.o ft_split_redir.o ft_search_path.o \
 	  ft_setenv.o ft_skip_spaces.o ft_split_input.o ft_str_qut_char.o \
 	  ft_trunc_args.o ft_unsetenv.o ft_update_env_pwd.o ft_local_export.o \
-	  ft_local_unset.o
+	  ft_local_unset.o ft_local_process.o
 
 OBJ2 = shell/history.o shell/keys.o shell/keys_arrow.o shell/keys_ctrl.o \
 	   shell/keys_extra.o shell/keys_line.o shell/line_utils.o \
 	   shell/new_main.o shell/quotes.o shell/tools.o shell/shell_main.o \
-	   shell/auto_complete.o shell/auto_complete_tools.o shell/ft_lstsize.o\
-	   shell/auto_complete_read.o shell/auto_complete_print.o \
-	   shell/keys_ctrl_tools.c
+	   shell/.auto_complete.c shell/auto_complete_tools.o shell/ft_lstsize.o\
+	   shell/.auto_complete_read.c shell/auto_complete_print.o \
+	   shell/keys_ctrl_tools.o shell/keys_line1.o shell/keys_shift.o \
+	   shell/copy_cut_paste.o shell/copy_tools.o
 
 MAKELIB = make -C libft
 MAKELIBCLEAN = make -C libft clean
@@ -155,6 +156,9 @@ ft_key_pressed.o : ft_key_pressed.c
 ft_launch.o : ft_launch.c
 	$(CCFLAGS) -c ft_launch.c
 
+ft_launch_redir.o : ft_launch_redir.c
+	$(CCFLAGS) -c ft_launch_redir.c
+
 ft_line_add.o : ft_line_add.c
 	$(CCFLAGS) -c ft_line_add.c
 
@@ -224,6 +228,9 @@ ft_redir_over.o : ft_redir_over.c
 ft_restor_win.o : ft_restor_win.c
 	$(CCFLAGS) -c ft_restor_win.c
 
+ft_run_script.o : ft_run_script.c
+	$(CCFLAGS) -c ft_run_script.c 
+
 ft_search_path.o : ft_search_path.c
 	$(CCFLAGS) -c ft_search_path.c
 
@@ -262,3 +269,6 @@ ft_local_export.o : ft_local_export.c
 
 ft_local_unset.o : ft_local_unset.c
 	$(CCFLAGS) -c ft_local_unset.c
+
+ft_local_process.o : ft_local_process.c
+	$(CCFLAGS) -c ft_local_process.c

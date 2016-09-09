@@ -6,7 +6,7 @@
 /*   By: sasiedu <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/02 01:36:43 by sasiedu           #+#    #+#             */
-/*   Updated: 2016/09/06 13:22:55 by sasiedu          ###   ########.fr       */
+/*   Updated: 2016/09/09 16:05:59 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ char	*ft_history_tower(char *access, char *line)
 	{
 		size++;
 		ptr = 0;
-		ft_lstadd(&lst, ft_lstnew(ft_strdup(line), sizeof(char) * \
-					ft_strlen(line)));
+		ft_lstadd(&lst, ft_lstnew(line, sizeof(char) * 	ft_strlen(line)));
 	}
 	else if (ft_memcmp(access, "UP", 2) == 0 && ptr < (int)size)
 		return (ft_history_line(&lst, ++ptr));

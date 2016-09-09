@@ -6,13 +6,13 @@
 /*   By: vivan-de <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/05 09:25:45 by vivan-de          #+#    #+#             */
-/*   Updated: 2016/08/05 10:39:45 by vivan-de         ###   ########.fr       */
+/*   Updated: 2016/09/09 08:59:33 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh21.h"
 
-t_line	*ft_line_def()
+t_line	*ft_line_def(void)
 {
 	t_line	*l;
 

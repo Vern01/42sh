@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/23 15:42:59 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/06 16:09:51 by sasiedu          ###   ########.fr       */
+/*   Updated: 2016/09/09 15:21:31 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,13 @@ static char	*ft_get_qut(char *line)
 	return (temp);
 }
 
+void		set_vari(int *i, int *d_qut, int *s_qut)
+{
+	*i = -1;
+	*d_qut = 0;
+	*s_qut = 0;
+}
+
 char		*ft_check_qut(char *line)
 {
 	int		i;
@@ -34,11 +41,9 @@ char		*ft_check_qut(char *line)
 	int		s_qut;
 	char	*re;
 
-	d_qut = 0;
-	s_qut = 0;
-	i = 0;
+	set_vari(&i, &d_qut, &s_qut);
 	re = line;
-	while (line[i])
+	while (line[++i])
 	{
 		if (i == 0 && line[i] == '"')
 			d_qut = 1;
@@ -48,7 +53,6 @@ char		*ft_check_qut(char *line)
 			s_qut = 1;
 		if (i > 0 && line[i] == '\'' && line[i - 1] != '\\' && d_qut == 0)
 			s_qut = (s_qut == 0) ? 1 : 0;
-		i++;
 	}
 	if (d_qut || s_qut)
 	{

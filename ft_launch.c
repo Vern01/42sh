@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/01 13:36:10 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/07 15:37:18 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/09 09:22:27 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ static void	ft_close(t_launch *lau, int full)
 		ft_free_str_arr(&lau->cmd);
 	if (lau->out)
 		ft_free_str_arr(&lau->out);
-	if(lau->in)
+	if (lau->in)
 		ft_free_str_arr(&lau->in);
 }
 
-static void	ft_perent(t_launch *lau, t_data *data, int	*stat)
+static void	ft_perent(t_launch *lau, t_data *data, int *stat)
 {
 	wait(stat);
 	*stat = WEXITSTATUS(*stat);
@@ -60,10 +60,7 @@ static void	ft_perent(t_launch *lau, t_data *data, int	*stat)
 	if (lau->in)
 		ft_free_str_arr(&lau->in);
 	if (lau->redir)
-	{
-		free(lau->redir);
-		lau->redir = NULL;
-	}
+		ft_memdel((void **)&lau->redir);
 }
 
 static void	ft_chiled(char **env, t_launch *lau, t_data *data)
@@ -75,10 +72,8 @@ static void	ft_chiled(char **env, t_launch *lau, t_data *data)
 	re = EXIT_FAILURE;
 	dup2(lau->fd_in, 0);
 	if (lau->in)
-	{
 		while (lau->in[++j])
 			ft_redir_in(lau->in[j], 1, j + lau->fd_in);
-	}
 	if ((lau->cmd[lau->i + 1]) != NULL)
 	{
 		env = ft_loop_redir_out(lau, data, env, 0);
@@ -106,10 +101,7 @@ char		**ft_launch(char *line, t_data *data, int *stat)
 	{
 		lau.redir = ft_get_redir(&lau.cmd[lau.i]);
 		if (lau.redir)
-		{
-			lau.splredir = ft_strsplit(lau.redir, ' ');
-			ft_split_redir(lau.splredir, &lau.out, &lau.in);
-		}
+			ft_launch_redir(&lau);
 		lau.args = ft_extract_args(lau.cmd[lau.i]);
 		if (lau.args && lau.args[0])
 		{

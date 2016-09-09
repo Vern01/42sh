@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 16:49:16 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/07 15:54:20 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/09 13:32:44 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ char	**ft_rm_env_var(char **env, int rm_ind)
 	return (re);
 }
 
-int	ft_unsetenv_err(void)
+int		ft_unsetenv_err(void)
 {
 	ft_putstr("No args passed.\n");
 	return (EXIT_FAILURE);
 }
 
-int	ft_unsetenv(char **split, t_data *data)
+int		ft_unsetenv(char **split, t_data *data)
 {
 	int		rm;
 

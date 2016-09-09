@@ -6,7 +6,7 @@
 /*   By: vivan-de <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/28 11:50:04 by vivan-de          #+#    #+#             */
-/*   Updated: 2016/08/06 17:29:53 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/09 08:58:07 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ static void	ft_pick(char *s, t_line **l, t_key key)
 void		ft_key_pressed(char *s, t_line **l)
 {
 	int			keycode;
+	int			i;
 	t_key		key;
 
 	set_key(&key);
@@ -49,12 +50,9 @@ void		ft_key_pressed(char *s, t_line **l)
 	}
 	else
 	{
-		int i = -1;
+		i = -1;
 		while (s[++i])
-		{
 			keycode = s[i];
-		//	ft_putnbr(keycode);
-		}
 		ft_pick(s, l, key);
 	}
 }

@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_move_line_down.c                                :+:      :+:    :+:   */
+/*   ft_run_script.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/08/06 16:46:26 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/09 09:26:08 by vivan-de         ###   ########.fr       */
+/*   Created: 2016/09/09 10:37:36 by rojones           #+#    #+#             */
+/*   Updated: 2016/09/09 15:20:43 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh21.h"
 
-void	ft_move_line_down(char *line, size_t *cursor)
+void	ft_run_script(char *path, t_data *data)
 {
-	size_t	col;
+	puts("run script called");
+	int		fd;
+	char	*line;
 
-	col = (size_t)(tgetnum("co"));
-	if (((*cursor) % col == (size_t)(ft_strlen(line)) % col))
-		return ;
-	(*cursor) += col;
-	if ((*cursor) > (size_t)(ft_strlen(line)))
-		(*cursor) = (size_t)(ft_strlen(line));
+	fd = open(path, O_RDONLY);
+	while (get_next_line(fd, &line))
+	{
+		if (line && line[0])
+			line = ft_check_qut(line);
+		if (line && line[0])
+			ft_split_input(line, data);	
+		ft_strdel(&line);
+	}
+	close(fd);
 }
