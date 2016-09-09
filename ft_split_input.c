@@ -6,23 +6,28 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/22 12:49:21 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/07 16:01:13 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/09 13:31:48 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh21.h"
 
-char	*ft_check_logic_op(char *str, int *op)
+void		set_var(int *i, int *s_qut, int *d_qut)
 {
-	int 	i;
+	*i = -1;
+	*s_qut = 0;
+	*d_qut = 0;
+}
+
+char		*ft_check_logic_op(char *str, int *op)
+{
+	int		i;
 	int		s_qut;
 	int		d_qut;
 
-	i = 0;
-	s_qut = 0;
-	d_qut = 0;
+	set_var(&i, &s_qut, &d_qut);
 	*op = 0;
-	while (str && str[i] != '\0')
+	while (str && str[++i] != '\0')
 	{
 		if (i == 0 && str[i] == '\'')
 			s_qut = 1;
@@ -39,7 +44,6 @@ char	*ft_check_logic_op(char *str, int *op)
 			*op = (str[i] == '|') ? 1 : 2;
 			return (&str[i]);
 		}
-		i++;
 	}
 	return (NULL);
 }
@@ -64,7 +68,7 @@ static int	run_comparison(t_data *data, t_split_log *log)
 	return (0);
 }
 
-char	**ft_split_input_op(char *line, t_data *data)
+char		**ft_split_input_op(char *line, t_data *data)
 {
 	t_split_log	log;
 
@@ -77,18 +81,18 @@ char	**ft_split_input_op(char *line, t_data *data)
 			return (data->env);
 		log.temp = ft_strsub(log.mv, 0, (int)(log.log - log.mv));
 		if (run_comparison(data, &log) == -1)
-			 return (data->env);
+			return (data->env);
 		log.last_op = log.op;
 		log.init = 1;
 		log.mv = log.log + 2;
 	}
 	log.temp = ft_strdup(log.mv);
 	if (run_comparison(data, &log) == -1)
-			 return (data->env);
+		return (data->env);
 	return (data->env);
 }
 
-char	**ft_split_input(char *line, t_data *data)
+char		**ft_split_input(char *line, t_data *data)
 {
 	char	*col;
 	char	*mv;

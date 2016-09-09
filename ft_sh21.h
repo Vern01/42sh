@@ -6,12 +6,12 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 08:48:05 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/09 14:52:43 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/09 15:21:12 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_MINISHELL_H
-# define FT_MINISHELL_H
+#ifndef FT_SH21_H
+# define FT_SH21_H
 # include "libft/libft.h"
 # include <dirent.h>
 # include <termios.h>
@@ -19,90 +19,89 @@
 # include <term.h>
 # include "shell/shell.h"
 
-
 typedef struct	s_win
 {
-	struct termios nwin;
-	struct termios owin;
+	struct termios	nwin;
+	struct termios	owin;
 }				t_win;
 
 typedef struct	s_getredir
 {
-	int     i;  
-	int     j;  
-	int     s_qut;
-	int     d_qut;
-	char    *temp;
-	char    *temp2;
-	char    *temp3;
-	char    *temp4;
-	char    *templine1;
-	char    *templine2;
+	int		i;
+	int		j;
+	int		s_qut;
+	int		d_qut;
+	char	*temp;
+	char	*temp2;
+	char	*temp3;
+	char	*temp4;
+	char	*templine1;
+	char	*templine2;
 }				t_getredir;
 
 typedef struct	s_split_log
 {
-	char    *log;
-	char    *mv;
-	char    *temp;
-	int     stat;
-	int     last_op;
-	int     op;
-	int     init;
+	char	*log;
+	char	*mv;
+	char	*temp;
+	int		stat;
+	int		last_op;
+	int		op;
+	int		init;
 }				t_split_log;
 
 typedef struct	s_launch
 {
-	pid_t   pid;
-	int		pipe;
-	int     i;  
-	int     fd_in;
-	int     p[2];
-	char    **args;
-	char    **splredir;
-	char    **cmd;
-	char    *redir;
-	char    **out;
-	char    **in;
+	pid_t			pid;
+	int				pipe;
+	int				i;
+	int				fd_in;
+	int				p[2];
+	char			**args;
+	char			**splredir;
+	char			**cmd;
+	char			*redir;
+	char			**out;
+	char			**in;
 }				t_launch;
 
 typedef struct	s_echo_flag
 {
-	int	n;
-	int	set_e;
+	int		n;
+	int		set_e;
 }				t_echo_flag;
 
 typedef struct	s_pipe_redir
 {
-	int	re;
-	int	pipe;
-	int	reapp;
+	int				re;
+	int				pipe;
+	int				reapp;
 }				t_pipe_redir;
 
-typedef struct          s_line
+typedef struct	s_line
 {
-	int             i;  
-	size_t          cursor;
-	char            c;  
-	char            *line;
-	char            *entered;
-	struct s_line   *prev;
-	struct s_line   *next;
-}                       t_line;
+	int				i;
+	size_t			cursor;
+	char			c;
+	char			*line;
+	char			*entered;
+	struct s_line	*prev;
+	struct s_line	*next;
+}				t_line;
 
-typedef struct              s_key
+typedef struct	s_key
 {
-	char                *line;
-	char                buff[2048];
-	char                *term;
-}                           t_key;
+	char			*line;
+	char			buff[2048];
+	char			*term;
+}				t_key;
 
 typedef struct	s_data
 {
-	t_win	win;
-	t_line	*line;
-	char	**env;
-	char	**local;
+	t_win		win;
+	t_line		*line;
+	char		**env;
+	char		**local;
 }				t_data;
 
 void			ft_add_char(t_line *l);
@@ -117,7 +116,8 @@ int				ft_cd(char **args, t_data *data);
 int				ft_cd_home(t_data *data);
 int				ft_cd_opwd(t_data *data);
 int				ft_check_arg_op(char *str);
-void			ft_check_arg_case_len(char *line, int *s_qut, int *d_qut, int *i);
+void			ft_check_arg_case_len(char *line, int *s_qut, int *d_qut,
+				int *i);
 int				ft_check_dir(char *path, char *name);
 int				ft_check_env_var(char *arg, char **env);
 char			*ft_check_qut(char *line);
@@ -145,6 +145,7 @@ int				ft_isop(char c);
 void			ft_init_win(t_win *win);
 void			ft_key_pressed(char *s, t_line **l);
 char			**ft_launch(char *line, t_data *data, int *stat);
+void			ft_launch_redir(t_launch *lau);
 void			ft_line_add(t_line **l);
 t_line			*ft_line_def();
 void			ft_line_save(t_line **l);

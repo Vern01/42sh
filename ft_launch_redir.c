@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_exe_path.c                                      :+:      :+:    :+:   */
+/*   ft_launch_redir.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: vivan-de <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/25 10:02:46 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/09 15:25:05 by rojones          ###   ########.fr       */
+/*   Created: 2016/09/09 09:08:45 by vivan-de          #+#    #+#             */
+/*   Updated: 2016/09/09 09:23:49 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_sh21.h"
 
-int	ft_exe_path(char **args, t_data *data)
+void	ft_launch_redir(t_launch *lau)
 {
-	char	*path;
-	int		script;
-
-	script = 0;
-	if ((path = ft_search_path(args, data, &script)) == NULL)
-		return (0);
-	execve(path, args, data->env);
-	if (path)
-		free(path);
-	return (1);
+	lau->splredir = ft_strsplit(lau->redir, ' ');
+	ft_split_redir(lau->splredir, &lau->out, &lau->in);
 }

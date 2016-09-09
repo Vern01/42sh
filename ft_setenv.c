@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/29 13:46:36 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/07 15:34:43 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/09 13:28:35 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char		**ft_add_env_var(char **split, char **env)
 	return (re);
 }
 
-char	**ft_dupenv(char **env, int size)
+char		**ft_dupenv(char **env, int size)
 {
 	int		i;
 	char	**tmp;
@@ -68,7 +68,7 @@ char	**ft_dupenv(char **env, int size)
 	return (tmp);
 }
 
-int	ft_setenv(char **split, t_data *data)
+int			ft_setenv(char **split, t_data *data)
 {
 	int		c;
 	char	**tmp;

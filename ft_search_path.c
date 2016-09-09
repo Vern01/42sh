@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/01 13:51:03 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/09 15:04:15 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/09 15:58:35 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static char	*ft_check_abs_path(char *path, t_data *data, int *script)
 				*script = 1;
 			}
 			else
-				puts("return path");
+				return (ft_strdup(path));
 		}
 	}
 	return (NULL);

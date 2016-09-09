@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/21 11:50:00 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/07 16:01:43 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/09 13:29:55 by vivan-de         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static char	*ft_get_prompt(char **env)
 	return (t);
 }
 
-void	ft_prompt(int oflag, char **env)
+void		ft_prompt(int oflag, char **env)
 {
 	int		check;
 	char	*p;
@@ -84,8 +84,8 @@ void	ft_prompt(int oflag, char **env)
 int			main(int ac, char **av)
 {
 	t_data		data;
-	extern char **environ;
-	int         oflag;
+	extern char	**environ;
+	int			oflag;
 
 	ft_init_win(&data.win);
 	data.env = ft_cpyenv(environ);

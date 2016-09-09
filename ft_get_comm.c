@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 09:41:54 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/09 14:51:51 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/09 15:22:53 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_get_block(char **s, int *block, int *pipe, t_data *data)
 {
 	if (strcmp(s[0], "echo") == 0)
 		return (ft_echo(s, data));
-	if (strcmp(s[0], "cd") == 0 && (*block += 1) && *pipe == 1)
+	else if (strcmp(s[0], "cd") == 0 && (*block += 1) && *pipe == 1)
 		return (ft_cd(s, data));
 	else if ((strcmp(s[0], "setenv") == 0 ||
 			strcmp(s[0], "export") == 0) && (*block += 1) && *pipe == 1)
@@ -67,5 +67,5 @@ int	ft_get_comm(char **s, t_data *data, int p)
 			ft_printf("command not found: %s\n", s[0]);
 		ft_strdel(&path);
 	}
-	return(EXIT_FAILURE);
+	return (EXIT_FAILURE);
 }

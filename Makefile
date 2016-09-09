@@ -6,7 +6,7 @@
 #    By: rojones <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/28 08:54:36 by rojones           #+#    #+#              #
-#    Updated: 2016/09/09 10:47:55 by rojones          ###   ########.fr        #
+#    Updated: 2016/09/09 15:26:42 by rojones          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,11 @@ OBJ = ft_add_char.o ft_arglen.o ft_arrow_down.o ft_arrow_left.o ft_arrow_right.o
 	  ft_cd_opwd.o ft_check_arg_case_len.o ft_check_arg_op.o ft_check_dir.o \
 	  ft_check_env_var.o ft_check_redir_files.o ft_count_arg.o ft_cpyenv.o \
 	  ft_echo.o ft_echo_env_var.o ft_echo_str.o ft_env.o ft_echo_case.o \
-	  ft_exc_cd.o ft_exe_path.o ft_exit.o ft_extract_arg.o ft_extract_args.o \
+	  ft_exc_cd.o ft_exit.o ft_extract_arg.o ft_extract_args.o \
 	  ft_extract_redir.o ft_free_line.o ft_get_comm.o ft_get_env_var.o \
 	  ft_get_next_line.o \
 	  ft_get_qut.o ft_get_redir.o ft_init_win.o ft_isop.o ft_key_pressed.o\
-	  ft_launch.o ft_line_add.o ft_line_def.o ft_line_save.o \
+	  ft_launch.o ft_launch_redir.o ft_line_add.o ft_line_def.o ft_line_save.o \
 	  ft_lines_entered.o ft_loop_redir_out.o\
 	  ft_pwd_var.o ft_next_op.o ft_num_args.o ft_redir_in.o ft_redir_out.o \
 	  ft_redir_over.o ft_rem_args.o ft_remove_char.o ft_restor_win.o \
@@ -154,6 +154,9 @@ ft_key_pressed.o : ft_key_pressed.c
 
 ft_launch.o : ft_launch.c
 	$(CCFLAGS) -c ft_launch.c
+
+ft_launch_redir.o : ft_launch_redir.c
+	$(CCFLAGS) -c ft_launch_redir.c
 
 ft_line_add.o : ft_line_add.c
 	$(CCFLAGS) -c ft_line_add.c
