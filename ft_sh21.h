@@ -6,7 +6,7 @@
 /*   By: rojones <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/06/28 08:48:05 by rojones           #+#    #+#             */
-/*   Updated: 2016/09/09 15:21:12 by rojones          ###   ########.fr       */
+/*   Updated: 2016/09/09 16:25:10 by rojones          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,4 +181,5 @@ int				ft_local_unset(t_data *data, char *var);
 void			ft_local_export(char *local, t_data *data);
 char			**ft_dupenv(char **env, int size);
 void			ft_print_locals(t_data *data);
+char			*ft_local_process(char *line, t_data *data);
 #endif
